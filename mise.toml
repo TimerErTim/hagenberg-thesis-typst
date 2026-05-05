@@ -1,0 +1,130 @@
+[tools]
+typst = "0.14.2"
+typstyle = "0.14.4"
+
+[env]
+TYPST_ROOT = "{{config_root}}"
+TYPST_FONT_PATHS = "{{config_root}}/template/fonts"
+TYPST_PACKAGE_PATH = "{{config_root}}/packages"
+
+[tasks."fmt:typst"]
+description = "Format the typst code"
+run = [
+    "typstyle -i ./*.typ ./components/*.typ ./template/**/*.typ --timing"
+]
+
+[tasks.fmt]
+description = "Apply projectwide formatting"
+depends = ["fmt:?*"]
+
+[tasks."build:thumbnail"]
+description = "Build the thumbnail from the template main document"
+depends = ["setup:editable-package"]
+run = [
+    "typst compile -f png --pages 1 --ppi 250 template/main.typ thumbnail.png",
+]
+
+
+[tasks."publish:prepare"]
+description = "Prepare the project for publication"
+depends = ["fmt", "build:thumbnail"]
+
+[tasks."publish:copy-to"]
+description = "Publish the project by copying to a target destination"
+usage = '''
+arg "<dir>" help="The target directory to copy to"
+'''
+dir = "{{cwd}}"
+tools.python = { version = "3.12" }
+run = [
+    "pip install pathspec",
+    '''
+#!/usr/bin/env python
+
+import shutil, pathspec, os, sys
+from pathlib import Path
+
+def sync():
+    src = Path("{{config_root}}")
+    dst = Path(os.getenv("usage_dir"))
+    print(f"Syncing from {src} to {dst}")
+
+    ignore_file = src / ".publishignore"
+    patterns = ignore_file.read_text().splitlines() if ignore_file.exists() else []
+    spec = pathspec.PathSpec.from_lines("gitwildmatch", patterns)
+
+    def is_ignored(path: Path):
+        rel = path.relative_to(src)
+        return spec.match_file(str(rel))
+
+    def copytree_no_ignored(src_dir: Path, dst_dir: Path):
+        for item in src_dir.iterdir():
+            if is_ignored(item):
+                continue
+            target = dst_dir / item.name
+            if item.is_dir():
+                copytree_no_ignored(item, target)
+            else:
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(item, target)
+                
+    if dst.exists():
+        if dst.is_symlink():
+            dst.unlink()
+        else:
+            shutil.rmtree(dst)
+    dst.mkdir(parents=True, exist_ok=True)
+    copytree_no_ignored(src, dst)
+    print(f"✅ Synced to {dst}")
+
+sync()
+''',
+]
+
+[tasks.publish]
+description = "Publish the project to local packages mirror"
+depends = ["setup:local-packages", "publish:prepare"]
+tools.yq = "4.48.1"
+tools.jujutsu = "0.40.0"
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Use yq v4 syntax for TOML (note: yq v4 reads TOML with 'yq -e -p toml ...')
+name=$(yq e '.package.name' typst.toml)
+version=$(yq e '.package.version' typst.toml)
+
+dest="packages/preview/$name/$version"
+echo "Pushing $name version $version to $dest..."
+mise run publish:copy-to "$dest"
+jj workspace update-stale --repository packages
+jj commit -m "$name:$version" --repository packages
+jj b s ght-publish -r @- --repository packages --allow-backwards
+'''
+
+[tasks."setup:editable-package"]
+description = "Setup the editable package to use @preview/... locally"
+depends = ["setup:local-packages"]
+tools.yq = "4.48.1"
+run = '''
+#!/usr/bin/env bash
+set -euo pipefail
+
+name=$(yq e '.package.name' typst.toml)
+version=$(yq e '.package.version' typst.toml)
+
+dest="packages/preview/$name/$version"
+echo "Setting up $name editable version $version to $dest..."
+mkdir -p "$dest"
+rm -rf "$dest"
+ln -sf "../../../" "$dest"
+'''
+
+[tasks."setup:local-packages"]
+description = "Setup the local packages (WARNING: WILL DELETE ALL LOCAL PACKAGES)"
+tools.jujutsu = "0.40.0"
+run = [
+    "rm -rf packages && jj workspace forget packages || echo 'Packages workspace already forgotten'",
+    "jj workspace add packages -r 'root()' --sparse-patterns empty || echo 'Packages workspace already added'",
+    "cd packages && jj sparse set --clear --add preview/grand-hagenberg-thesis",
+]

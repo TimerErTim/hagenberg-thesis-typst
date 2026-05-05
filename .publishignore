@@ -1,0 +1,20 @@
+# Exclude git metadata
+.git/
+.jj/
+.gitignore
+
+# Exclude heavy assets used only for README/Docs
+images/
+*.pdf
+out/
+
+# Exclude development/IDE config
+.vscode/
+tests/
+Makefile
+scripts/
+/mise.toml
+/packages
+
+# Exclude the ignore file itself
+.publishignore

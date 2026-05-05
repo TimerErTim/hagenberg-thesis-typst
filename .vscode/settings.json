@@ -1,0 +1,6 @@
+{
+    "tinymist.rootPath": "${workspaceFolder}",
+    "tinymist.typstExtraArgs": [
+        "--package-path", "${workspaceFolder}/packages"
+    ],
+}
