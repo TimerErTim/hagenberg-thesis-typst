@@ -25,7 +25,8 @@
   #grid(
     columns: (auto, 1fr, auto),
     column-gutter: 0.5cm,
-    pdf.artifact(image("../assets/fhooe-logo.svg", height: 1.25cm)),
+    [],
+    // placeholder for fh logo
     [
       #text(
         size: 1.5em,
@@ -34,11 +35,8 @@
 
       4232 Hagenberg, Softwarepark 11
     ],
-    image(
-      "../assets/oeh-logo.png",
-      height: 1.25cm,
-      alt: "Österreichische Hochschüler- und Hochschülerinnenschaft",
-    ),
+    [],
+    // placeholder for öh logo
   )
   #line(length: 100%)
 
