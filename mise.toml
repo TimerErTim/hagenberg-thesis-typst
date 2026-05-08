@@ -21,7 +21,10 @@ depends = ["fmt:?*"]
 description = "Build the thumbnail from the template main document"
 depends = ["setup:editable-package"]
 run = [
-    "typst compile -f png --pages 1 --ppi 250 template/main.typ thumbnail.png",
+    "mkdir -p out",
+    "typst compile -f pdf template/main.typ out/template.pdf",
+    "typst compile -f png --pages 1 --ppi 250 thumbnail.typ thumbnail.png",
+    "typst compile -f png --pages 1 --ppi 250 thumbnail.typ --input is-flat=true thumbnail-flat.png",
 ]
 
 

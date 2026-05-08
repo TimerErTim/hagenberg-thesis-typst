@@ -22,6 +22,10 @@ Concretely, this template provides a practical, production-ready thesis layout w
 
 The package name is `@preview/easy-hgb-thesis`.
 
+## Preview
+
+![Preview of the template content](./thumbnail-flat.png)
+
 ## Quick Start
 
 ### Option A: Use as a Typst package (recommended)

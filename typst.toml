@@ -9,7 +9,7 @@ repository = "https://github.com/timerertim/hagenberg-thesis-template"
 license = "CC0-1.0"
 categories = ["thesis", "report"]
 keywords = ["Hagenberg", "FH Upper Austria", "thesis", "template"]
-exclude = ["thumbnail.png"]
+exclude = ["thumbnail.png", "thumbnail-flat.png"]
 
 [template]
 path = "template"

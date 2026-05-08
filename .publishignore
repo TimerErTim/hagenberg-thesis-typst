@@ -7,6 +7,7 @@
 images/
 *.pdf
 out/
+thumbnail.typ
 
 # Exclude development/IDE config
 .vscode/
