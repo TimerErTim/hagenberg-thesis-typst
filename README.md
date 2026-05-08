@@ -1,4 +1,4 @@
-# Grand Hagenberg Thesis Template
+# Easy Hagenberg Thesis Template
 
 Opinionated Typst template for bachelor and master theses (and related protocols) at FH Upper Austria, with a focus on Campus Hagenberg.
 
@@ -20,7 +20,7 @@ Concretely, this template provides a practical, production-ready thesis layout w
 - bilingual labels and declarations
 - an extensible API for section-level and document-level styling
 
-The package name is `@preview/grand-hagenberg-thesis`.
+The package name is `@preview/easy-hgb-thesis`.
 
 ## Quick Start
 
@@ -29,7 +29,7 @@ The package name is `@preview/grand-hagenberg-thesis`.
 In your Typst document:
 
 ```typ
-#import "@preview/grand-hagenberg-thesis:0.1.0": full-thesis
+#import "@preview/easy-hgb-thesis:0.1.0": full-thesis
 ```
 
 Then configure metadata and wrap your content with `#show: full-thesis.with(...)` (see `template/main.typ` for a complete example).
@@ -37,7 +37,7 @@ Then configure metadata and wrap your content with `#show: full-thesis.with(...)
 You can get started even quicker by using the predefined template:
 
 ```bash
-typst init @preview/grand-hagenberg-thesis
+typst init @preview/easy-hgb-thesis
 ```
 
 ### Option B: Clone and customize this repository
@@ -46,6 +46,12 @@ typst init @preview/grand-hagenberg-thesis
 git clone https://github.com/timerertim/hagenberg-thesis-template.git
 cd hagenberg-thesis-template
 mise install
+```
+
+Change the import in the `main.typ` file:
+
+```typ
+#import "../lib.typ": full-thesis
 ```
 
 Build the example template document:

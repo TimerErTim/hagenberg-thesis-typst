@@ -126,5 +126,5 @@ tools.jujutsu = "0.40.0"
 run = [
     "rm -rf packages && jj workspace forget packages || echo 'Packages workspace already forgotten'",
     "jj workspace add packages -r 'root()' --sparse-patterns empty || echo 'Packages workspace already added'",
-    "cd packages && jj sparse set --clear --add preview/grand-hagenberg-thesis",
+    "cd packages && jj sparse set --clear --add preview/easy-hgb-thesis",
 ]

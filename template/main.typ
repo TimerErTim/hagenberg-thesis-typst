@@ -2,7 +2,7 @@
 // Please submit any issues or feature requests to https://github.com/timerertim/thesis-template/issues
 
 // uncomment before release for testing
-#import "@preview/grand-hagenberg-thesis:0.1.0": full-thesis
+#import "@preview/easy-hgb-thesis:0.1.0": full-thesis
 
 // We configure the document data here, this will be in the title page and others
 #set document(
