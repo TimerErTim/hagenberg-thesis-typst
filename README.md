@@ -22,6 +22,11 @@ Concretely, this template provides a practical, production-ready thesis layout w
 
 The package name is `@preview/easy-hgb-thesis`.
 
+## Beware
+
+This template is far from its finished state.
+It will evolve based on user feedback and my experience with it as part of my bachelor thesis during the winter term 2026/27. Expect continous improvements during this period.
+
 ## Preview
 
 ![Preview of the template content](./thumbnail-flat.png)
