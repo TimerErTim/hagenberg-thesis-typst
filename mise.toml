@@ -5,7 +5,7 @@ typstyle = "0.14.4"
 [env]
 TYPST_ROOT = "{{config_root}}"
 TYPST_FONT_PATHS = "{{config_root}}/template/fonts"
-TYPST_PACKAGE_PATH = "{{config_root}}/packages"
+TYPST_PACKAGE_PATH = "{{config_root}}/packages/packages"
 
 [tasks."fmt:typst"]
 description = "Format the typst code"
@@ -97,7 +97,7 @@ set -euo pipefail
 name=$(yq e '.package.name' typst.toml)
 version=$(yq e '.package.version' typst.toml)
 
-dest="packages/preview/$name/$version"
+dest="packages/packages/preview/$name/$version"
 echo "Pushing $name version $version to $dest..."
 mise run publish:copy-to "$dest"
 jj workspace update-stale --repository packages
@@ -116,11 +116,11 @@ set -euo pipefail
 name=$(yq e '.package.name' typst.toml)
 version=$(yq e '.package.version' typst.toml)
 
-dest="packages/preview/$name/$version"
+dest="packages/packages/preview/$name/$version"
 echo "Setting up $name editable version $version to $dest..."
 mkdir -p "$dest"
 rm -rf "$dest"
-ln -sf "../../../" "$dest"
+ln -sf "../../../../" "$dest"
 '''
 
 [tasks."setup:local-packages"]
@@ -129,5 +129,5 @@ tools.jujutsu = "0.40.0"
 run = [
     "rm -rf packages && jj workspace forget packages || echo 'Packages workspace already forgotten'",
     "jj workspace add packages -r 'root()' --sparse-patterns empty || echo 'Packages workspace already added'",
-    "cd packages && jj sparse set --clear --add preview/easy-hgb-thesis",
+    "cd packages && jj sparse set --clear --add packages/preview/easy-hgb-thesis",
 ]
