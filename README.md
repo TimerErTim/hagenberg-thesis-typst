@@ -15,7 +15,7 @@ typst init @preview/easy-hgb-thesis
 To import the package in an existing document:
 
 ```typ
-#import "@preview/easy-hgb-thesis:0.1.0": full-thesis
+#import "@preview/easy-hgb-thesis:0.2.0": full-thesis
 
 #set document(
   title: "Thesis Title",
