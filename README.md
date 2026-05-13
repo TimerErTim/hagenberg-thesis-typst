@@ -1,6 +1,6 @@
 # Easy Hagenberg Thesis Template
 
-Opinionated Typst template for bachelor and master theses (and related protocols) at FH Upper Austria, with a focus on Campus Hagenberg.
+Opinionated Typst template for bachelor and master theses (and related protocols) at University of applied sciences Upper Austria, with a focus on Campus Hagenberg.
 
 ![Preview of the template content](./thumbnail-flat.png)
 
@@ -46,7 +46,7 @@ The package name is `@preview/easy-hgb-thesis`.
 ## Beware
 
 This template is far from its finished state.
-It will evolve based on user feedback and my experience with it as part of my bachelor thesis during the winter term 2026/27. Expect continuous improvements during this period..
+It will evolve based on user feedback and my experience with it as part of my bachelor thesis during the winter term 2026/27. Expect continuous improvements during this period.
 
 ## Customization
 
