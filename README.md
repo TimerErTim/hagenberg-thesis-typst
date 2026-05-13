@@ -112,11 +112,6 @@ Useful tasks:
 - `components/` - template API, sections, i18n, and style defaults
 - `template/` - runnable example thesis project
 
-## License
-
-This repository is released under **CC0-1.0** (public domain dedication).  
-See `LICENSE` for the full legal text.
-
 ## Contributing
 
 Issues and pull requests are very welcome.
