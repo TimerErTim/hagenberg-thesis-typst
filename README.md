@@ -2,10 +2,31 @@
 
 Opinionated Typst template for bachelor and master theses (and related protocols) at FH Upper Austria, with a focus on Campus Hagenberg.
 
-The template is designed to work in two modes:
+![Preview of the template content](./thumbnail-flat.png)
 
-- **Fast start via Typst package** for normal usage
-- **Full source customization** when you want to adapt sections/styles deeply
+## Quick start
+
+(recommended) Create a new project from the official template, then view the generated `main.typ` for a full working example:
+
+```bash
+typst init @preview/easy-hgb-thesis
+```
+
+To import the package in an existing document:
+
+```typ
+#import "@preview/easy-hgb-thesis:0.1.0": full-thesis
+
+#set document(
+  title: "Thesis Title",
+  author: "Author Name",
+  description: "Thesis Description",
+)
+#set text(lang: "en")
+#show: full-thesis.with(
+  ...
+)
+```
 
 ## Intent
 
@@ -25,98 +46,33 @@ The package name is `@preview/easy-hgb-thesis`.
 ## Beware
 
 This template is far from its finished state.
-It will evolve based on user feedback and my experience with it as part of my bachelor thesis during the winter term 2026/27. Expect continous improvements during this period.
+It will evolve based on user feedback and my experience with it as part of my bachelor thesis during the winter term 2026/27. Expect continuous improvements during this period..
 
-## Preview
+## Customization
 
-![Preview of the template content](./thumbnail-flat.png)
+The template is well documented with inline comments and docstrings. Quick exploration should reveal most customization options.
+The most important options are:
 
-## Quick Start
+### Language support
 
-### Option A: Use as a Typst package (recommended)
-
-In your Typst document:
-
+The template supports **English (`en`)** and **German (`de`)**:
 ```typ
-#import "@preview/easy-hgb-thesis:0.1.0": full-thesis
+#set text(lang: "de")
+#show: full-thesis.with(...)
 ```
 
-Then configure metadata and wrap your content with `#show: full-thesis.with(...)` (see `template/main.typ` for a complete example).
+### Style hooks
 
-You can get started even quicker by using the predefined template:
+Import `full-thesis`, then customize appearance and structure by passing style hooks to `full-thesis.with(...)`, such as:
 
-```bash
-typst init @preview/easy-hgb-thesis
-```
+- `global-style` (fonts, page layout)
+- `document-style` (overall document)
+- `content-style` (main chapters)
+- Section hooks: `abstract-style`, `outline-style`, `bibliography-style`, etc.
 
-### Option B: Clone and customize this repository
+Defaults match typical FH thesis requirements. Override only what you need.
 
-```bash
-git clone https://github.com/timerertim/hagenberg-thesis-template.git
-cd hagenberg-thesis-template
-mise install
-```
+# Contributing
 
-Change the import in the `main.typ` file:
-
-```typ
-#import "../lib.typ": full-thesis
-```
-
-Build the example template document:
-
-```bash
-cd template
-mise run export
-```
-
-## Styling and Customization
-
-The core template entry point is `full-thesis` in `lib.typ` / `components/template.typ`.
-
-You can customize styling at multiple levels through function hooks, including:
-
-- `global-style` (fonts, page geometry, global defaults)
-- `document-style` (document-wide behavior outside title page)
-- `content-style` (main chapter content)
-- section-specific hooks like `abstract-style`, `outline-style`, `bibliography-style`, etc.
-
-Default style behavior lives in `components/styles.typ` (A4, Arial 11pt, page numbering and heading conventions, bibliography defaults, etc.).
-
-## Language Support
-
-The template currently supports **English (`en`)** and **German (`de`)** through `components/i8n.typ`.
-
-- Set document language with Typst text language, e.g.:
-  - `#set text(lang: "en")`
-  - `#set text(lang: "de")`
-- Localized section names and declaration page selection are handled automatically.
-- If a key is missing, localization falls back to English.
-
-
-## Setup with `mise.toml`
-
-The repository includes a template project `template/` with its own `mise.toml` that configures:
-
-- tool versions (`typst`, `typstyle`)
-- Typst environment paths (`TYPST_ROOT`, font path)
-- reusable tasks for formatting and exporting the document
-
-Useful tasks:
-
-- `mise run export` - export the main document to PDF
-
-## Repository Structure
-
-- `lib.typ` - public package entrypoint
-- `components/` - template API, sections, i18n, and style defaults
-- `template/` - runnable example thesis project
-
-## Contributing
-
-Issues and pull requests are very welcome.
-
-- Open an issue for bugs, feature requests, or campus-specific adjustments.
-- Open a PR for fixes, style improvements, localization updates, and docs improvements.
-
-Feedback from real thesis usage is especially valuable to keep the template robust and practical.
+Feel free to open an issue or submit a pull request. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+Even something simple like insights about your experience using the template is very valuable.
