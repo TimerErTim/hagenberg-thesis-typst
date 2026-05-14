@@ -9,6 +9,9 @@ images/
 out/
 thumbnail.typ
 
+# Exclude unnecessary docs
+CONTRIBUTING.md
+
 # Exclude development/IDE config
 .vscode/
 tests/
