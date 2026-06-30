@@ -1,6 +1,6 @@
 [tools]
-typst = "0.14.2"
-typstyle = "0.14.4"
+typst = "0.15.0"
+typstyle = "0.15.0"
 
 [env]
 TYPST_ROOT = "{{config_root}}"
