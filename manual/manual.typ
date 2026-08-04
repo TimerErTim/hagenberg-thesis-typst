@@ -238,7 +238,7 @@ By default, the template uses *Arial, 11pt* for its content. This being a person
   ]
 }
 
-=== Abbrevation table
+=== Abbreviation table
 
 An abbreviation table is simply a Typst `dictionary` where the keys are the abbreviations and the values are the full definitions.
 

@@ -30,7 +30,7 @@ run = [
 [tasks."build:manual"]
 description = "Build the manual from the template manual document"
 run = [
-    "typst compile manual/manual.typ easy-hgb-thesis-manual.pdf",
+    "typst compile manual/manual.typ easy-hgb-thesis-manual.pdf --pdf-standard a-3u",
 ]
 
 [tasks."publish:prepare"]
