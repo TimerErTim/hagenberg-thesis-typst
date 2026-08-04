@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mkdjr/hayagriva/refs/heads/main/hayagriva.schema.json
+
+src_lodish-molecular-cell-biology:
+  type: book
+  title: Molecular Cell Biology
+  edition: 8
+  date: 2016-07-08
+  author:
+    - Harvey Lodish
+    - Arnold Berk
+    - Chris A. Kaiser
+    - Angelika Amon
+    - Hidde Ploegh
+    - Anthony Bretscher
+    - Monty Krieger
+    - Kelsey C. Martin
+  url:
+    value: https://books.google.at/books/about/Molecular_Cell_Biology.html?id=Ov7LvQEACAAJ
+    date: 2026-06-13
+  serial-number:
+    isbn: "9781319101572"
+  page-total: 1280

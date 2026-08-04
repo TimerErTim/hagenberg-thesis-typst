@@ -1,8 +1,8 @@
 // Thanks for using this thesis template!
-// Please submit any issues or feature requests to https://github.com/timerertim/thesis-template/issues
+// Please submit any issues or feature requests to https://github.com/TimerErTim/hagenberg-thesis-typst/issues
 
-// uncomment before release for testing
-#import "@preview/easy-hgb-thesis:0.2.0": full-thesis
+//#import "@preview/easy-hgb-thesis:0.2.0": full-thesis
+#import "../lib.typ": full-thesis, titlepage  // TODO: Remove this line before release
 
 // We configure the document data here, this will be in the title page and others
 #set document(
@@ -14,15 +14,18 @@
   // Optional, can be deleted.
   keywords: ("Keyword 1 ", "Keyword 2"),
 )
-// Set to "de" for German
+// If German, set to "de" instead of "en"
 #set text(lang: "en")
 
 #import "abbrev.typ": abbr
 // Wrap the document in the full-thesis template
 #show: full-thesis.with(
-  "Medicine- and Bioinformatics",
-  "2026/2027",
-  "Dr. Max Mentorman",
+  titlepage: titlepage(
+    "Computer Science",
+    "2026/2027",
+    "Dr. Max Mentorman",
+    work-type: "bachelor-thesis",
+  ),
   acknowledgement: include "chapters/acknowledgement.typ", // Can be deleted if not required
   kurzfassung: include "chapters/kurzfassung.typ",
   abstract: include "chapters/abstract.typ",

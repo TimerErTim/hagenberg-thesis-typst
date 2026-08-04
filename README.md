@@ -1,4 +1,4 @@
-# Easy Hagenberg Thesis Template
+# Hagenberg Thesis (Typst)
 
 Opinionated Typst template for bachelor and master theses (and related protocols) at University of applied sciences Upper Austria, with a focus on Campus Hagenberg.
 
@@ -28,6 +28,12 @@ To import the package in an existing document:
 )
 ```
 
+## Customization
+
+The template is well documented with inline comments and docstrings. Quick exploration should reveal most customization options for proficient Typst users.
+
+There is a [manual](./easy-hgb-thesis-manual.pdf) for newcomers and detailed customization options for experienced users.
+
 ## Intent
 
 Typst makes professional-quality publishing simple and accessible for everyone. I believe more people should benefit from its power and ease of use.
@@ -41,36 +47,10 @@ Concretely, this template provides a practical, production-ready thesis layout w
 - bilingual labels and declarations
 - an extensible API for section-level and document-level styling
 
-The package name is `@preview/easy-hgb-thesis`.
-
 ## Beware
 
 This template is far from its finished state.
 It will evolve based on user feedback and my experience with it as part of my bachelor thesis during the winter term 2026/27. Expect continuous improvements during this period.
-
-## Customization
-
-The template is well documented with inline comments and docstrings. Quick exploration should reveal most customization options.
-The most important options are:
-
-### Language support
-
-The template supports **English (`en`)** and **German (`de`)**:
-```typ
-#set text(lang: "de")
-#show: full-thesis.with(...)
-```
-
-### Style hooks
-
-Import `full-thesis`, then customize appearance and structure by passing style hooks to `full-thesis.with(...)`, such as:
-
-- `global-style` (fonts, page layout)
-- `document-style` (overall document)
-- `content-style` (main chapters)
-- Section hooks: `abstract-style`, `outline-style`, `bibliography-style`, etc.
-
-Defaults match typical FH thesis requirements. Override only what you need.
 
 # Contributing
 

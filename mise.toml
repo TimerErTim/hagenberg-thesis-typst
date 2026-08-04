@@ -1,6 +1,6 @@
 [tools]
-typst = "0.14.2"
-typstyle = "0.14.4"
+typst = "0.15.0"
+typstyle = "0.15.0"
 
 [env]
 TYPST_ROOT = "{{config_root}}"
@@ -27,10 +27,15 @@ run = [
     "typst compile -f png --pages 1 --ppi 250 thumbnail.typ --input is-flat=true thumbnail-flat.png",
 ]
 
+[tasks."build:manual"]
+description = "Build the manual from the template manual document"
+run = [
+    "typst compile manual/manual.typ easy-hgb-thesis-manual.pdf",
+]
 
 [tasks."publish:prepare"]
 description = "Prepare the project for publication"
-depends = ["fmt", "build:thumbnail"]
+depends = ["fmt", "build:thumbnail", "build:manual"]
 
 [tasks."publish:copy-to"]
 description = "Publish the project by copying to a target destination"
