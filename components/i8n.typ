@@ -59,25 +59,37 @@
     de: "Fachhochschule Oberösterreich",
     en: "University of Applied Sciences Upper Austria",
   ),
+  "fh-bachelor-study-program": (
+    de: "Fachhochschul-Bachelorstudiengang",
+    en: "Bachelor study programme",
+  ),
+  "fh-master-study-program": (
+    de: "Fachhochschul-Masterstudiengang",
+    en: "Master study programme",
+  ),
+  "degree-goal-declaration": (
+    de: "zur Erlangung des akademischen Grades\nBachelor of Science in Engineering",
+    en: "to obtain the academic degree of\nBachelor of Science in Engineering",
+  ),
   "campus-hagenberg": (
     de: "Campus Hagenberg",
     en: "Campus Hagenberg",
+  ),
+  "hagenberg-address": (
+    de: "A-4232 Hagenberg, Austria",
+    en: "A-4232 Hagenberg, Austria"
   ),
   "date": (
     de: "Datum",
     en: "Date",
   ),
-  "mentor": (
-    de: "Betreuer",
-    en: "Mentor",
+  "submitted-by": (
+    de: "Eingereicht von",
+    en: "Submitted by",
   ),
-  "executed-by": (
-    de: "Ausgeführt von",
-    en: "Executed by",
-  ),
-  "submission-notes": (
-    de: "Abgabevermerk",
-    en: "Submission notes",
+  "reviewed-by": (
+    de: "Begutachtet von",
+    en: "Reviewed by",
   ),
   "master-thesis": (
     de: "Masterarbeit",
@@ -86,10 +98,6 @@
   "bachelor-thesis": (
     de: "Bachelorarbeit",
     en: "Bachelor thesis",
-  ),
-  "total-project": (
-    de: "Gesamtprojekt",
-    en: "Total project",
   ),
   "on-date": (
     de: "am",

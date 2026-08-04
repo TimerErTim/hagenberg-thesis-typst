@@ -1,7 +1,8 @@
-#import "styles.typ" as default-styles
+#import "styles_modern.typ" as default-styles
 #import "i8n.typ": i8n, i8n-declaration-page
 #import "titlepage.typ": titlepage
 #import "sections.typ": *
+#import "constants.typ": WORK_TYPES
 
 /// Wraps the document in the full-thesis template. This includes a title page and various other sections common in theses.
 /// You must have configured the document data in the main document (title, author, description, keywords) before using this template. E.g. ```typ
@@ -54,9 +55,8 @@
   // Sections with content
   titlepage: titlepage(
     "Computer Science",
-    "2026/2027",
     "Dr. Max Mentorman",
-    work-type: "bachelor-thesis",
+    work-type: WORK_TYPES.bachelor-thesis,
   ),
   acknowledgement: none,
   abstract: [],

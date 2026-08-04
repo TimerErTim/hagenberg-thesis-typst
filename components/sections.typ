@@ -1,5 +1,5 @@
 #import "i8n.typ": i8n, i8n-declaration-page
-#import "styles.typ" as default-styles
+#import "styles_modern.typ" as default-styles
 
 /// Shows the title page.
 #let titlepage-section(

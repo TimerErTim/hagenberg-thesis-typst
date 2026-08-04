@@ -132,6 +132,9 @@
 /// This style is applied to the declaration page.
 #let declaration-style(doc) = {
   set heading(outlined: false)
+  show heading: set align(left)
+  show heading.where(level: 1): set text(size: 0.5em)
+  set page(header: none, footer: none)
   doc
 }
 
