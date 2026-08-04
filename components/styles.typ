@@ -99,24 +99,32 @@
     it
   }
   let current-top-heading = state("_ght-cth", none)
-  set heading(numbering: (..args) => context {
-    let current-top-heading = query(selector(heading).before(here())).last()
-    let chapter-outline-heading = query(selector(
-      <_ght-chapter-outline>,
-    )).first()
-    // For display in chapter outline, we must remove the margin from the heading numbering
-    if (
-      current-top-heading.location().page()
-        == chapter-outline-heading.location().page()
-    ) {
-      numbering("1.1", ..args)
-    } else {
-      box(
-        width: 1.5cm,
-        numbering("1.1", ..args),
-      )
+  set heading(numbering: (..args) => context {    
+    let next-after-heading = query(selector(<_ght-post-heading>).after(here()))
+
+    let is-inside-heading = next-after-heading.len() > 0
+    if is-inside-heading {
+      next-after-heading = next-after-heading.first()
+      // If there is a _ght-pre-heading between here and next-after-heading, we are outside a heading
+      let pre-headings = query(selector(<_ght-pre-heading>).after(here()).before(next-after-heading.location()))
+      if pre-headings.len() > 0 {
+        is-inside-heading = false
+      }
     }
+
+    show: if is-inside-heading {
+      box.with(width: 1.5cm)
+    } else {
+      it => it
+    }
+
+    numbering("1.1", ..args)
   })
+  show heading: it => [
+    #metadata(none) <_ght-pre-heading>
+    #it
+    #metadata(none) <_ght-post-heading>
+  ]
 
   doc
 }

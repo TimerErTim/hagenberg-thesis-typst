@@ -3,18 +3,9 @@
 
 /// Shows the title page.
 #let titlepage-section(
-  course-of-study,
-  schoolyear,
-  mentor-name,
-  work-type,
+  cont
 ) = {
-  import "titlepage.typ": titlepage
-  titlepage(
-    course-of-study,
-    schoolyear,
-    mentor-name,
-    work-type: work-type,
-  )
+  cont
 }
 
 /// Shows the declaration page with the given style.
