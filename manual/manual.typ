@@ -1,4 +1,4 @@
-#import "../lib.typ": full-thesis
+#import "../lib.typ": abbreviations-section, full-thesis
 
 #set document(
   title: "Thesis Template Manual",
@@ -32,11 +32,18 @@
 #import "@preview/oxifmt:1.0.0": strfmt
 
 #show: codly-init.with()
-#codly(languages: codly-languages, lang-format: (name, icon, color) => {
-  box(stroke: color, fill: color.lighten(80%), height: 1.2em, radius: 1mm)[
-    #box(inset: 2pt, icon)#name
-  ]
-}, number-align: horizon + right, skip-line: align(center, sym.dots.h), skip-number: [#sym.dots.v], smart-skip: true)
+#codly(
+  languages: codly-languages,
+  lang-format: (name, icon, color) => {
+    box(stroke: color, fill: color.lighten(80%), height: 1.2em, radius: 1mm)[
+      #box(inset: 2pt, icon)#name
+    ]
+  },
+  number-align: horizon + right,
+  skip-line: align(center, sym.dots.h),
+  skip-number: [#sym.dots.v],
+  smart-skip: true,
+)
 
 = Setup
 
@@ -70,9 +77,12 @@ Or sign-in to the *Typst Web App*, navigate to the #link("https://typst.app/univ
 First import the template package:
 
 #raw(
-  strfmt(```typ
-  #import "@preview/easy-hgb-thesis:{version}": full-thesis, titlepage
-  ```.text, version: package-metadata.package.version),
+  strfmt(
+    ```typ
+    #import "@preview/easy-hgb-thesis:{version}": full-thesis, titlepage, WORK_TYPES
+    ```.text,
+    version: package-metadata.package.version,
+  ),
   lang: "typ",
   block: true,
 )
@@ -94,10 +104,9 @@ Finally, wrap the document in the full-thesis template:
 ```typ
 #show: full-thesis.with(
   titlepage: titlepage(
-    "Computer Science",
-    "2026/2027",
-    "Dr. Max Mentorman",
-    work-type: "bachelor-thesis",
+    "Computer Science",  // Course of study
+    "Dr. Max Mentorman", // Mentor name
+    work-type: WORK_TYPES.bachelor-thesis,
   ),
   kurzfassung: include "chapters/kurzfassung.typ",
   abstract: include "chapters/abstract.typ",
@@ -114,7 +123,7 @@ The document is now ready to be compiled and can be customized according to your
 
 == Compilation
 
-I recommend using the `typst compile` command of the offical *Typst CLI* binary to compile the document or tools listed in @mise-en-place. This will produce a PDF file. 
+I recommend using the `typst compile` command of the offical *Typst CLI* binary to compile the document or tools listed in @mise-en-place. This will produce a PDF file.
 
 ```sh
 typst compile main.typ Your_Thesis.pdf
@@ -242,6 +251,11 @@ By default, the template uses *Arial, 11pt* for its content. This being a person
 
 An abbreviation table is simply a Typst `dictionary` where the keys are the abbreviations and the values are the full definitions.
 
+#let abbreviations = (
+  "USB": "Universal Serial Bus",
+  "RAM": "Random Access Memory",
+  "MSE": "Mean Squared Error",
+)
 ```typ
 #let abbreviations = (
   "USB": "Universal Serial Bus",
@@ -258,6 +272,13 @@ Then pass it to the `abbreviations` template parameter:
   abbreviations: abbreviations,
 )
 ```
+
+#{
+  show heading: none
+  abbreviations-section(
+    abbreviations,
+  )
+}
 
 /// TODO: Add default style chapter (classic vs modern)
 
@@ -284,10 +305,6 @@ These parameters expect functions taking the section content and returning newly
 
 Defaults match typical FH thesis requirements. Override only what you need.
 
-// TODO: explain advanced styling with sections in depth
-
-// TODO: explain titlepage parameters more
-
 == Sections
 
 Most sections are optional and many can be opt-out of. Simply omitting them from the `full-thesis.with(...)` call will omit them from the document. Sections requiring explicit opt-out are specified with a `none` value:
@@ -296,6 +313,47 @@ Most sections are optional and many can be opt-out of. Simply omitting them from
 ```typ
 #show: full-thesis.with(
   abstract: none,
+)
+```
+
+== Advanced
+
+For power users seeking fine-grained control over the document structure, the template provides individual sections as ready to use elements.
+
+These take the section's main content as input and display a correctly stylized version of it. This allows you to put the preamble after the table of contents:
+
+```typ
+#show: full-thesis.with(
+  preamble-style: _ => {
+    // Replace preamble with outline
+    chapter-outline()
+  },
+  outline-style: _ => {
+    // Vice-versa
+    preample-section[
+      This is my preamble, which is now before the table of contents.
+    ]
+  }
+)
+```
+
+However, by default the preamble's headings are not listed in the outline. To fix this, you can use the `style-preface` parameter:
+
+```typ
+#show: full-thesis.with(
+  preamble-style: _ => {
+    // Replace preamble with outline
+    chapter-outline()
+  },
+  outline-style: _ => {
+    // Vice-versa
+    preample-section(style-preface: it => {
+      set heading(outlined: true)
+      it
+    })[
+      This is my preamble, which is now before the table of contents.
+    ]
+  }
 )
 ```
 
@@ -332,7 +390,7 @@ You will find a list of my personal recommended and useful third party Typst pac
 
 #package-recommend(
   "zero",
-  "https://typst.app/universe/package/zero"
+  "https://typst.app/universe/package/zero",
 )[configurable scientific number formatting; basically a requirement for scientific writing]
 #package-recommend(
   "cetz",
@@ -345,7 +403,7 @@ You will find a list of my personal recommended and useful third party Typst pac
 )[diagrams with nodes and arrows, powerful; easier but not as flexible as cetz]
 #package-recommend(
   "lilaq",
-  "https://typst.app/universe/package/lilaq"
+  "https://typst.app/universe/package/lilaq",
 )[easy to use plotting library with sane defaults and lots of customization options]
 #package-recommend(
   "codly",
@@ -353,7 +411,7 @@ You will find a list of my personal recommended and useful third party Typst pac
 )[code-block styling and formatting, has some quite powerful features, used in this manual]
 #package-recommend(
   "suiji",
-  "https://typst.app/universe/package/suiji"
+  "https://typst.app/universe/package/suiji",
 )[pseudo-random number generator, useful for programmatic generation of data, solves Typst's guarantee of reproducibility and inherent statelessness]
 
 == Support
