@@ -5,7 +5,7 @@ typstyle = "0.15.0"
 [env]
 TYPST_ROOT = "{{config_root}}"
 TYPST_FONT_PATHS = "{{config_root}}/template/fonts"
-TYPST_PACKAGE_PATH = "{{config_root}}/packages/packages"
+TYPST_PACKAGE_PATH = "{{config_root}}/local-packages/"
 
 [tasks."fmt:typst"]
 description = "Format the typst code"
@@ -17,14 +17,23 @@ run = [
 description = "Apply projectwide formatting"
 depends = ["fmt:?*"]
 
-[tasks."build:thumbnail"]
-description = "Build the thumbnail from the template main document"
+[tasks."check:template-compilable"]
+description = "Check if the template is compilable"
+depends = ["setup:editable-package"]
+run = [
+    "typst compile -f pdf --pdf-standard a-3u template/main.typ - > /dev/null",
+]
+
+[tasks."build:thumbnails"]
+description = "Build the thumbnails from the template main document"
 depends = ["setup:editable-package"]
 run = [
     "mkdir -p out",
-    "typst compile -f pdf template/main.typ out/template.pdf",
-    "typst compile -f png --pages 1 --ppi 250 thumbnail.typ thumbnail.png",
-    "typst compile -f png --pages 1 --ppi 250 thumbnail.typ --input is-flat=true thumbnail-flat.png",
+    "typst compile -f pdf thumbnail/content.typ --input is-classic=true out/template_classic.pdf",
+    "typst compile -f pdf thumbnail/content.typ --input is-classic=false out/template_modern.pdf",
+    "typst compile -f png --pages 1 --ppi 250  thumbnail/variants.typ --input is-flat=false --input is-classic=true thumbnail.png",
+    "typst compile -f png --pages 1 --ppi 250 thumbnail/variants.typ --input is-flat=true --input is-classic=false thumbnail-flat-modern.png",
+    "typst compile -f png --pages 1 --ppi 250 thumbnail/variants.typ --input is-flat=true --input is-classic=true thumbnail-flat-classic.png",
 ]
 
 [tasks."build:manual"]
@@ -35,7 +44,7 @@ run = [
 
 [tasks."publish:prepare"]
 description = "Prepare the project for publication"
-depends = ["fmt", "build:thumbnail", "build:manual"]
+depends = ["fmt", "build:thumbnails", "build:manual", "check:template-compilable"]
 
 [tasks."publish:copy-to"]
 description = "Publish the project by copying to a target destination"
@@ -91,7 +100,7 @@ sync()
 
 [tasks.publish]
 description = "Publish the project to local packages mirror"
-depends = ["setup:local-packages", "publish:prepare"]
+depends = ["setup:packages-workspace", "publish:prepare"]
 tools.yq = "4.48.1"
 tools.jujutsu = "0.40.0"
 run = '''
@@ -112,7 +121,6 @@ jj b s ght-publish -r @- --repository packages --allow-backwards
 
 [tasks."setup:editable-package"]
 description = "Setup the editable package to use @preview/... locally"
-depends = ["setup:local-packages"]
 tools.yq = "4.48.1"
 run = '''
 #!/usr/bin/env bash
@@ -121,15 +129,15 @@ set -euo pipefail
 name=$(yq e '.package.name' typst.toml)
 version=$(yq e '.package.version' typst.toml)
 
-dest="packages/packages/preview/$name/$version"
+dest="local-packages/preview/$name/$version"
 echo "Setting up $name editable version $version to $dest..."
 mkdir -p "$dest"
 rm -rf "$dest"
-ln -sf "../../../../" "$dest"
+ln -sf "../../../" "$dest"
 '''
 
-[tasks."setup:local-packages"]
-description = "Setup the local packages (WARNING: WILL DELETE ALL LOCAL PACKAGES)"
+[tasks."setup:packages-workspace"]
+description = "Setup the remote packages workspace locally (WARNING: WILL DELETE ALL LOCAL PACKAGES)"
 tools.jujutsu = "0.40.0"
 run = [
     "rm -rf packages && jj workspace forget packages || echo 'Packages workspace already forgotten'",

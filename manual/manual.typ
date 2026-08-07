@@ -259,7 +259,7 @@ Then pass it to the `abbreviations` template parameter:
 )
 ```
 
-/// TODO: Change default style chapter
+/// TODO: Add default style chapter (classic vs modern)
 
 == Style hooks <style-hooks>
 
@@ -283,6 +283,10 @@ These parameters expect functions taking the section content and returning newly
 ```
 
 Defaults match typical FH thesis requirements. Override only what you need.
+
+// TODO: explain advanced styling with sections in depth
+
+// TODO: explain titlepage parameters more
 
 == Sections
 

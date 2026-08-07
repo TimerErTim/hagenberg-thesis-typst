@@ -1,8 +1,7 @@
 // Thanks for using this thesis template!
 // Please submit any issues or feature requests to https://github.com/TimerErTim/hagenberg-thesis-typst/issues
 
-//#import "@preview/easy-hgb-thesis:0.2.0": full-thesis
-#import "../lib.typ": full-thesis, titlepage  // TODO: Remove this line before release
+#import "@preview/easy-hgb-thesis:0.2.0": full-thesis, titlepage, WORK_TYPES
 
 // We configure the document data here, this will be in the title page and others
 #set document(
@@ -22,9 +21,8 @@
 #show: full-thesis.with(
   titlepage: titlepage(
     "Computer Science",
-    "2026/2027",
     "Dr. Max Mentorman",
-    work-type: "bachelor-thesis",
+    work-type: WORK_TYPES.bachelor-thesis,
   ),
   acknowledgement: include "chapters/acknowledgement.typ", // Can be deleted if not required
   kurzfassung: include "chapters/kurzfassung.typ",

@@ -2,7 +2,8 @@
 
 Opinionated Typst template for bachelor and master theses (and related protocols) at University of applied sciences Upper Austria, with a focus on Campus Hagenberg.
 
-![Preview of the template content](./thumbnail-flat.png)
+![Preview of the template content in modern variant](./thumbnail-flat-modern.png)
+![Preview of the template content in classic variant](./thumbnail-flat-classic.png)
 
 ## Quick start
 

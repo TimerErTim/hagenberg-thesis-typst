@@ -7,7 +7,7 @@
 images/
 *.pdf
 out/
-thumbnail.typ
+thumbnail/
 manual/
 
 # Exclude unnecessary docs
