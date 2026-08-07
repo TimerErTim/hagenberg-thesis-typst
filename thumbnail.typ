@@ -10,6 +10,7 @@
   columns: if not should-be-flat { (1fr, 1fr) } else { (1fr, 1fr, 1fr, 1fr) },
   gutter: 1em,
   stroke: gray,
+  fill: white,
   image("out/template.pdf", page: 1),
   image("out/template.pdf", page: 8),
   image("out/template.pdf", page: 9),
