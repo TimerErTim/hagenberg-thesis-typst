@@ -5,3 +5,15 @@
 = Demo Chapter
 
 #lorem(50)
+
+= Source Codes
+
+List of source codes:
+
+== Snippets
+
+```cpp
+int main() {
+  return 0;
+}
+```

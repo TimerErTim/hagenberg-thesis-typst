@@ -5,7 +5,7 @@
   ),
   "chapter-outline": (
     de: "Inhaltsverzeichnis",
-    en: "Table of contents",
+    en: "Contents",
   ),
   "table-outline": (
     de: "Tabellenverzeichnis",
@@ -27,9 +27,13 @@
     de: "Literaturverzeichnis",
     en: "Bibliography",
   ),
+  "references": (
+    de: "Quellenverzeichnis",
+    en: "References",
+  ),
   "abbreviations": (
     de: "Abkürzungsverzeichnis",
-    en: "List of abbreviations",
+    en: "Abbreviations",
   ),
   "acknowledgement": (
     de: "Danksagung",
@@ -38,6 +42,14 @@
   "preamble": (
     de: "Vorwort",
     en: "Preamble",
+  ),
+  "preface": (
+    de: "Vorwort",
+    en: "Preface",
+  ),
+  "chapter": (
+    de: "Kapitel",
+    en: "Chapter",
   ),
   "abbreviation": (
     de: "Abkürzung",

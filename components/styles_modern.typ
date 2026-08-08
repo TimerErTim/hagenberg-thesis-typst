@@ -90,6 +90,7 @@
 #let content-style(doc) = {
   // Arabic for text sections = content
   set page(numbering: "1")
+  counter(page).update(1)
 
   // Setup headers
   set heading(numbering: "1.1")
@@ -99,19 +100,7 @@
     it
   }
   let current-top-heading = state("_ght-cth", none)
-  set heading(numbering: (..args) => context {    
-    let next-after-heading = query(selector(<_ght-post-heading>).after(here()))
-
-    let is-inside-heading = next-after-heading.len() > 0
-    if is-inside-heading {
-      next-after-heading = next-after-heading.first()
-      // If there is a _ght-pre-heading between here and next-after-heading, we are outside a heading
-      let pre-headings = query(selector(<_ght-pre-heading>).after(here()).before(next-after-heading.location()))
-      if pre-headings.len() > 0 {
-        is-inside-heading = false
-      }
-    }
-
+  set heading(numbering: (..args) => with-inside-heading(is-inside-heading => {
     show: if is-inside-heading {
       box.with(width: 1.5cm)
     } else {
@@ -119,12 +108,8 @@
     }
 
     numbering("1.1", ..args)
-  })
-  show heading: it => [
-    #metadata(none) <_ght-pre-heading>
-    #it
-    #metadata(none) <_ght-post-heading>
-  ]
+  }))
+  show heading: mark-heading-boundaries
 
   doc
 }
@@ -147,6 +132,7 @@
 #let abstract-style(doc) = {
   // Arabic for text sections = abstract
   set page(numbering: "1")
+  set heading(offset: 1, outlined: false)
 
   doc
 }
@@ -155,6 +141,8 @@
 #let preamble-style(doc) = {
   // Arabic for text sections = abstract
   set page(numbering: "1")
+
+  set heading(offset: 1, outlined: false)
 
   doc
 }
@@ -192,6 +180,8 @@
 
 /// This style is applied to the appendix section.
 #let appendix-style(doc) = {
+  set heading(offset: 1)
+
   // Arabic for text sections = appendix
   set page(numbering: "1")
 

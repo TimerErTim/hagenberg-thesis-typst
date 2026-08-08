@@ -1,4 +1,4 @@
-#import "../lib.typ": abbreviations-section, full-thesis
+#import "../lib.typ": abbreviations-section, full-thesis, THESIS_STYLE
 
 #set document(
   title: "Thesis Template Manual",
@@ -17,6 +17,7 @@
 
 #show: full-thesis.with(
   titlepage: none,
+  thesis-style: THESIS_STYLE.modern,
   include-declaration: false,
   kurzfassung: none,
   abstract: none,
@@ -220,7 +221,7 @@ And switching to *APA*#footnote[Default citation style]: #cite(<src_lodish-molec
 
 === Changing document font
 
-By default, the template uses *Arial, 11pt* for its content. This being a personal preference of mine, many users might want to change this (for example to use a serif font). For this, you can use the `document-style` style hook:
+Many users might want to change the font from the default base style. For this, you can use the `document-style` style hook:
 
 #codly(skips: ((6, 3),))
 ```typ
@@ -281,6 +282,30 @@ Then pass it to the `abbreviations` template parameter:
 }
 
 /// TODO: Add default style chapter (classic vs modern)
+=== Two-column layout
+
+_Typst_ easily supports two-column layouts out of the box. Make use of the `content-style` style hook to achieve this:
+
+#codly(skips: ((2, 3),))
+```typ
+#show: full-thesis.with(
+  content-style: it => {
+    set page(columns: 2)
+    it
+  },
+)
+```
+
+=== Print size control box
+
+To include a print size control box at the end of the document, which is useful when printing the document on paper but is deactivated by default for digital export, set the `include-print-size-control` template parameter to `true`:
+
+#codly(skips: ((3, 3),))
+```typ
+#show: full-thesis.with(
+  include-print-size-control: true,
+)
+```
 
 == Style hooks <style-hooks>
 

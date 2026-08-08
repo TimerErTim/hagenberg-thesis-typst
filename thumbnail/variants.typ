@@ -4,7 +4,7 @@
 #set page(
   paper: "a4",
   height: auto,
-  margin: 1em,
+  margin: 0pt,
   fill: white.transparentize(100%),
 )
 #let path = {
@@ -19,7 +19,7 @@
 
 #grid(
   columns: if not should-be-flat { (1fr, 1fr) } else { (1fr, 1fr, 1fr, 1fr) },
-  gutter: 1em,
+  gutter: 1mm,
   stroke: gray,
   fill: white,
   image(path, page: 1),
