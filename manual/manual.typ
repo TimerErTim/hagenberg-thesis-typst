@@ -281,7 +281,19 @@ Then pass it to the `abbreviations` template parameter:
   )
 }
 
-/// TODO: Add default style chapter (classic vs modern)
+=== Change thesis style
+
+The template supports two different thesis styles, which control the overall look and feel of the document: *classic* and *modern*. The classic style is the default and is more traditional. It tries to loyal to the #link("https://github.com/Digital-Media/HagenbergThesis/tree/main")[Digital-Media/HagenbergThesis] template, whereas the modern style is clean, minimalistic and inspired higher technical college diploma thesis design guides. To change the thesis style, you can use the `thesis-style` template parameter:
+
+#codly(skips: ((3, 3),))
+```typ
+#show: full-thesis.with(
+  thesis-style: THESIS_STYLE.modern,
+)
+```
+
+You can try out the different styles even after finishing your thesis (assuming no major style modifications were made by you)! Feedback to the *modern* style is especially helpful!
+
 === Two-column layout
 
 _Typst_ easily supports two-column layouts out of the box. Make use of the `content-style` style hook to achieve this:
