@@ -89,7 +89,7 @@
   ),
   "hagenberg-address": (
     de: "A-4232 Hagenberg, Austria",
-    en: "A-4232 Hagenberg, Austria"
+    en: "A-4232 Hagenberg, Austria",
   ),
   "date": (
     de: "Datum",

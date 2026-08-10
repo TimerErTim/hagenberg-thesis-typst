@@ -3,11 +3,13 @@
 #import "styles_modern.typ"
 #import "styles_classic.typ"
 
-#let base-style(style) = if style == THESIS_STYLE.modern { styles_modern } else { styles_classic }
+#let base-style(style) = if style == THESIS_STYLE.modern {
+  styles_modern
+} else { styles_classic }
 
 /// Shows the title page.
 #let titlepage-section(
-  cont
+  cont,
 ) = {
   cont
 }
@@ -100,7 +102,9 @@
   show: style-preface
 
   // Content
-  heading(level: 1, if thesis-style == THESIS_STYLE.modern { i8n("preamble") } else { i8n("preface") })
+  heading(level: 1, if thesis-style == THESIS_STYLE.modern {
+    i8n("preamble")
+  } else { i8n("preface") })
   content
 }
 
@@ -151,7 +155,6 @@
 #let figure-outline(
   style-preface: it => it,
   thesis-style: THESIS_STYLE.classic,
-
 ) = {
   // Behavioral specs integral for document
   show outline: set heading(outlined: true)

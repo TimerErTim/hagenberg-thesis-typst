@@ -20,6 +20,7 @@ Makefile
 scripts/
 /mise.toml
 /packages
+/local-packages
 
 # Exclude the ignore file itself
 .publishignore

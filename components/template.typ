@@ -3,7 +3,7 @@
 #import "i8n.typ": i8n, i8n-declaration-page
 #import "titlepage.typ": titlepage
 #import "sections.typ": *
-#import "constants.typ": WORK_TYPES, THESIS_STYLE
+#import "constants.typ": THESIS_STYLE, WORK_TYPES
 
 /// Wraps the document in the full-thesis template. This includes a title page and various other sections common in theses.
 /// You must have configured the document data in the main document (title, author, description, keywords) before using this template. E.g. ```typ
@@ -40,7 +40,7 @@
 /// - include-print-size-control (true, false): `true` includes a print size control box at the end, `false` deactivates entirely.
 ///
 /// - thesis-style (classic, modern): Select the base style for the thesis. `classic` is the default style and `modern` is a more modern approach. Use THESIS_STYLE.classic or THESIS_STYLE.modern.
-/// 
+///
 /// - global-style (): Style global settings like fonts, page margins, language, etc.
 /// - document-style (): Style the entire text document (same as global-style apart title page)
 /// - declaration-style (): Style for the declaration page.
@@ -98,7 +98,9 @@
 
   doc,
 ) = context {
-  let default-styles = if thesis-style == THESIS_STYLE.modern { styles_modern } else { styles_classic }
+  let default-styles = if thesis-style == THESIS_STYLE.modern {
+    styles_modern
+  } else { styles_classic }
 
   // Define global styles that exist everywhere in the document (like fonts, page size, etc.)
   show: default-styles.global-style
@@ -114,7 +116,10 @@
 
   // Declaration page with styles applied
   let declaration = if include-declaration {
-    declaration-page(style-preface: declaration-style, thesis-style: thesis-style)
+    declaration-page(
+      style-preface: declaration-style,
+      thesis-style: thesis-style,
+    )
   }
 
   // Acknowledgement section with styles applied if applicable
@@ -122,40 +127,57 @@
     acknowledgement-section(
       acknowledgement,
       style-preface: acknowledgement-style,
-      thesis-style: thesis-style
+      thesis-style: thesis-style,
     )
   }
 
   // Kurzfassung section with styles applied
   let kurzfassung = if kurzfassung != none {
-    kurzfassung-section(kurzfassung, style-preface: abstract-style, thesis-style: thesis-style)
+    kurzfassung-section(
+      kurzfassung,
+      style-preface: abstract-style,
+      thesis-style: thesis-style,
+    )
   }
 
   // Abstract section with styles applied
   let abstract = if abstract != none {
-    abstract-section(abstract, style-preface: abstract-style, thesis-style: thesis-style)
+    abstract-section(
+      abstract,
+      style-preface: abstract-style,
+      thesis-style: thesis-style,
+    )
   }
 
   // Preamble section with styles applied if applicable
   let preamble = if preamble != none {
-    preamble-section(preamble, style-preface: preamble-style, thesis-style: thesis-style)
+    preamble-section(
+      preamble,
+      style-preface: preamble-style,
+      thesis-style: thesis-style,
+    )
   }
 
   // Depending on document language, show different order
   let abstracts = if text.lang == "de" {
-    (kurzfassung,
-    abstract)
+    (kurzfassung, abstract)
   } else {
-    (abstract,
-      kurzfassung)
+    (abstract, kurzfassung)
   }
 
   // Chapter outline with styles applied
-  let chapter-outline = chapter-outline(style-preface: outline-style, thesis-style: thesis-style)
+  let chapter-outline = chapter-outline(
+    style-preface: outline-style,
+    thesis-style: thesis-style,
+  )
 
   // Abbreviations section with styles applied if applicable
   let abbreviations = if abbreviations.len() >= 1 {
-    abbreviations-section(abbreviations, style-preface: abbreviations-style, thesis-style: thesis-style)
+    abbreviations-section(
+      abbreviations,
+      style-preface: abbreviations-style,
+      thesis-style: thesis-style,
+    )
   }
 
   // Content with styles applied
@@ -170,7 +192,9 @@
     include-figureoutline == true
       or (
         include-figureoutline == auto
-          and query(figure.where(outlined: true)).len() - query(figure.where(kind: table, outlined: true)).len() >= 1
+          and query(figure.where(outlined: true)).len()
+            - query(figure.where(kind: table, outlined: true)).len()
+            >= 1
       )
   ) {
     figure-outline(style-preface: outline-style, thesis-style: thesis-style)
@@ -189,12 +213,20 @@
 
   // Bibliography section with styles applied
   let bibliography = if bibl != none {
-    bibliography-section(bibl, style-preface: bibliography-style, thesis-style: thesis-style)
+    bibliography-section(
+      bibl,
+      style-preface: bibliography-style,
+      thesis-style: thesis-style,
+    )
   }
 
   // Appendix section with styles applied if applicable
   let appendix = if appendix != none {
-    appendix-section(appendix, style-preface: appendix-style, thesis-style: thesis-style)
+    appendix-section(
+      appendix,
+      style-preface: appendix-style,
+      thesis-style: thesis-style,
+    )
   }
 
   // Ordering per thesis-base-style

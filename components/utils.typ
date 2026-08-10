@@ -40,7 +40,11 @@
   if is-inside-heading {
     next-after-heading = next-after-heading.first()
     // If there is a _ght-pre-heading between here and next-after-heading, we are outside a heading
-    let pre-headings = query(selector(<_eht-pre-heading>).after(here()).before(next-after-heading.location()))
+    let pre-headings = query(
+      selector(<_eht-pre-heading>)
+        .after(here())
+        .before(next-after-heading.location()),
+    )
     if pre-headings.len() > 0 {
       is-inside-heading = false
     }

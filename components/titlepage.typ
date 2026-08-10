@@ -12,7 +12,7 @@
     top: 2cm,
     left: 2.5cm,
     bottom: 2cm,
-    right: 2.27cm
+    right: 2.27cm,
   ))
   #set par(leading: 0.5em, spacing: 0.5em, justify: false)
 
@@ -37,9 +37,9 @@
       #{
         i8n("hagenberg-address")
       }
-    ]
+    ],
   )
-  
+
   #set align(center)
   #v(6.5cm)
 

@@ -62,18 +62,20 @@
 
 #let _pre-top-heading-numbering(numbering-str, doc) = {
   show heading.where(level: 1): set heading(hanging-indent: 0pt)
-  set heading(numbering: (..args) => with-inside-heading(is-inside-heading => context {
-    let number = numbering(numbering-str, ..args)
-    if is-inside-heading and args.pos().len() == 1 {
-      set text(size: 0.68em)
-      show: block.with(inset: 0pt, below: 1.1cm)
-      heading.supplement
-      sym.space
-      number
-    } else {
-      number
-    }
-  }))
+  set heading(numbering: (..args) => with-inside-heading(
+    is-inside-heading => context {
+      let number = numbering(numbering-str, ..args)
+      if is-inside-heading and args.pos().len() == 1 {
+        set text(size: 0.68em)
+        show: block.with(inset: 0pt, below: 1.1cm)
+        heading.supplement
+        sym.space
+        number
+      } else {
+        number
+      }
+    },
+  ))
 
   doc
 }
@@ -92,9 +94,14 @@
         {
           entry.body()
           set text(font: original-font)
-          box(width: 1fr, inset: (x: 0.5em), if logical-level != 1 { repeat([.], gap: 0.5em) })
+          box(width: 1fr, inset: (x: 0.5em), if logical-level != 1 {
+            repeat([.], gap: 0.5em)
+          })
           let elem-location = entry.element.location()
-          numbering(elem-location.page-numbering(), ..counter(page).at(elem-location))
+          numbering(
+            elem-location.page-numbering(),
+            ..counter(page).at(elem-location),
+          )
         },
         gap: if logical-level == 1 { 1em } else { 0.5em },
       )
@@ -185,7 +192,7 @@
 #let table-outline-style(doc) = {
   // Arabic for tables section
   set page(numbering: "1")
-  
+
   show outline.entry: _outline-entry.with(logical-level: 2)
 
   doc
