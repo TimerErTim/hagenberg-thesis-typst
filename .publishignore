@@ -6,12 +6,10 @@
 # Exclude heavy assets used only for README/Docs
 images/
 *.pdf
+!easy-hgb-thesis-manual.pdf
 out/
 thumbnail/
 manual/
-
-# Exclude unnecessary docs
-CONTRIBUTING.md
 
 # Exclude development/IDE config
 .vscode/

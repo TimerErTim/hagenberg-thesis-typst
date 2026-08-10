@@ -9,7 +9,7 @@ repository = "https://github.com/TimerErTim/hagenberg-thesis-typst"
 license = "MIT-0"
 categories = ["thesis", "report"]
 keywords = ["Hagenberg", "FH Upper Austria", "thesis", "template"]
-exclude = ["thumbnail-flat-classic.png", "thumbnail-flat-modern.png", "easy-hgb-thesis-manual.pdf"]
+exclude = ["thumbnail-flat-classic.png", "thumbnail-flat-modern.png", "easy-hgb-thesis-manual.pdf", "CONTRIBUTING.md"]
 
 [template]
 path = "template"
