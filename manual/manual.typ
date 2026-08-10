@@ -283,7 +283,7 @@ Then pass it to the `abbreviations` template parameter:
 
 === Change thesis style
 
-The template supports two different thesis styles, which control the overall look and feel of the document: *classic* and *modern*. The classic style is the default and is more traditional. It tries to loyal to the #link("https://github.com/Digital-Media/HagenbergThesis/tree/main")[Digital-Media/HagenbergThesis] template, whereas the modern style is clean, minimalistic and inspired higher technical college diploma thesis design guides. To change the thesis style, you can use the `thesis-style` template parameter:
+The template supports two different thesis styles, which control the overall look and feel of the document: *classic* and *modern*. The classic style is the default and is more traditional. It tries to loyal to the #link("https://github.com/Digital-Media/HagenbergThesis/tree/main")[Digital-Media/HagenbergThesis] template, whereas the modern style is clean, uniform and inspired by higher technical college diploma thesis design guides. To change the thesis style, you can use the `thesis-style` template parameter:
 
 #codly(skips: ((3, 3),))
 ```typ
