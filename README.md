@@ -25,7 +25,7 @@ To import the package in an existing document:
 )
 #set text(lang: "en")
 #show: full-thesis.with(
-  ...
+  // customizations...
 )
 ```
 
