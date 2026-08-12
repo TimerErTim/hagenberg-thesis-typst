@@ -15,7 +15,9 @@
 
 #import "../template/abbrev.typ": abbr
 #show: full-thesis.with(
-  thesis-style: if is-classic { THESIS_STYLE.classic } else { THESIS_STYLE.modern },
+  thesis-style: if is-classic { THESIS_STYLE.classic } else {
+    THESIS_STYLE.modern
+  },
   titlepage: titlepage(
     "Computer Science",
     "Dr. Max Mentorman",

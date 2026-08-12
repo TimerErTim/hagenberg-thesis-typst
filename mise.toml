@@ -10,7 +10,7 @@ TYPST_PACKAGE_PATH = "{{config_root}}/local-packages/"
 [tasks."fmt:typst"]
 description = "Format the typst code"
 run = [
-    "typstyle -i ./*.typ ./components/*.typ ./template/**/*.typ --timing"
+    "typstyle -i ./*.typ ./components/*.typ ./template/**/*.typ ./thumbnail/*.typ ./manual/*.typ --timing"
 ]
 
 [tasks.fmt]

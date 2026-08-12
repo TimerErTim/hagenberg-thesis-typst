@@ -1,4 +1,4 @@
-#import "../lib.typ": abbreviations-section, full-thesis, THESIS_STYLE
+#import "../lib.typ": THESIS_STYLE, abbreviations-section, full-thesis
 
 #set document(
   title: "Thesis Template Manual",
@@ -73,7 +73,9 @@ Or sign-in to the *Typst Web App*, navigate to the #link("https://typst.app/univ
 == Manual installation <manual-setup>
 
 #let package-metadata = toml("../typst.toml")
-#let my-email = package-metadata.package.authors.at(0).find(regex("(?:<|@)([^>]+)")).slice(1)
+#let my-email = (
+  package-metadata.package.authors.at(0).find(regex("(?:<|@)([^>]+)")).slice(1)
+)
 
 First import the template package:
 
