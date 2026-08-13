@@ -188,7 +188,7 @@
   }
 
   // Figure outline with styles applied if applicable (forced or if there is at least one non-table figure)
-  let figure-outline = context if (
+  let figure-outline = if (
     include-figureoutline == true
       or (
         include-figureoutline == auto
@@ -201,7 +201,7 @@
   }
 
   // Table outline with styles applied if applicable (forced or if there is at least one table)
-  let table-outline = context if (
+  let table-outline = if (
     include-tableoutline == true
       or (
         include-tableoutline == auto
