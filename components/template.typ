@@ -1,7 +1,6 @@
 #import "styles_modern.typ"
 #import "styles_classic.typ"
 #import "i18n.typ": i18n
-#import "titlepage.typ": titlepage
 #import "sections.typ": *
 #import "constants.typ": THESIS_STYLE, WORK_TYPES
 
@@ -57,11 +56,7 @@
 /// - bibl (content): The bibliography to display. Citation style can be manually overriden here: `#bibliography("...", style: "ieee")`
 #let full-thesis(
   // Sections with content
-  titlepage: titlepage(
-    "Computer Science",
-    "Dr. Max Mentorman",
-    work-type: WORK_TYPES.bachelor-thesis,
-  ),
+  titlepage: none,
   acknowledgement: none,
   abstract: [],
   kurzfassung: [],
