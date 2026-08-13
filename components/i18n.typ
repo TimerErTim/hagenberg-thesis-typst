@@ -115,6 +115,18 @@
     de: "am",
     en: "on",
   ),
+  "signature": (
+    de: "Unterschrift",
+    en: "Signature",
+  ),
+  "declaration": (
+    de: "Erklärung",
+    en: "Declaration",
+  ),
+  "declaration-content": (
+    de: "Ich erkläre eidesstattlich, dass ich die vorliegende Arbeit selbstständig und ohne fremde Hilfe verfasst, andere als die angegebenen Quellen nicht benutzt und die den benutzten Quellen entnommenen Stellen als solche gekennzeichnet habe. Die Arbeit wurde bisher in gleicher oder ähnlicher Form keiner anderen Prüfungsbehörde vorgelegt.",
+    en: "I hereby declare and confirm that this thesis is entirely the result of my own original work. Where other sources of information have been used, they have been indicated as such and properly acknowledged. I further declare that this or similar work has not been submitted for credit elsewhere.",
+  ),
 )
 
 #let i18n(key) = context {
@@ -122,15 +134,6 @@
   let translations = keys-to-lang.at(key)
   let value = translations.at(lang, default: translations.at("en"))
   value
-}
-
-#let i18n-declaration-page() = context {
-  let lang = text.lang
-  if lang == "de" {
-    include "declaration_de.typ"
-  } else {
-    include "declaration_en.typ"
-  }
 }
 
 #let i18n-page-counter(current, total, numbering: auto) = context {

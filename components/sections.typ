@@ -1,4 +1,4 @@
-#import "i18n.typ": i18n, i18n-declaration-page
+#import "i18n.typ": i18n
 #import "constants.typ": THESIS_STYLE
 #import "styles_modern.typ"
 #import "styles_classic.typ"
@@ -28,7 +28,7 @@
   show: style-preface
 
   // Content
-  i18n-declaration-page()
+  include "declaration.typ"
 }
 
 /// Shows the acknowledgement section with the given content and style.

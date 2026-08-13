@@ -1,6 +1,6 @@
 #import "styles_modern.typ"
 #import "styles_classic.typ"
-#import "i18n.typ": i18n, i18n-declaration-page
+#import "i18n.typ": i18n
 #import "titlepage.typ": titlepage
 #import "sections.typ": *
 #import "constants.typ": THESIS_STYLE, WORK_TYPES
