@@ -184,10 +184,9 @@ The titlepage is customizable via the `titlepage` template parameter. The templa
 ```typ
 #show: full-thesis.with(
   titlepage: titlepage(
-    "Computer Science",
-    "2026/2027",
-    "Dr. Max Mentorman",
-    work-type: "bachelor-thesis",
+    "Computer Science",  // Course of study
+    "Dr. Max Mentorman", // Mentor name
+    work-type: WORK_TYPES.bachelor-thesis,
   ),
 )
 ```
@@ -276,12 +275,17 @@ Then pass it to the `abbreviations` template parameter:
 )
 ```
 
-#{
-  show heading: none
-  abbreviations-section(
-    abbreviations,
-  )
-}
+#context abbreviations-section(
+  abbreviations,
+  thesis-style: THESIS_STYLE.modern,
+  style-preface: it => {
+    show heading: none
+    let heading-counter = counter(heading).at(here())
+    it
+    counter(heading).update(heading-counter)
+  },
+)
+
 
 === Change thesis style
 
