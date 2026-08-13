@@ -1,4 +1,4 @@
-#import "i8n.typ": i8n, i8n-date-short
+#import "i18n.typ": i18n, i18n-date-short
 #import "constants.typ": WORK_TYPES
 
 #let titlepage(
@@ -24,9 +24,9 @@
     [
       #{
         if work-type == WORK_TYPES.bachelor-thesis [
-          #i8n("fh-bachelor-study-program")
+          #i18n("fh-bachelor-study-program")
         ] else [
-          #i8n("fh-master-study-program")
+          #i18n("fh-master-study-program")
         ]
       }\
       #{
@@ -35,7 +35,7 @@
         course-of-study
       }\
       #{
-        i8n("hagenberg-address")
+        i18n("hagenberg-address")
       }
     ],
   )
@@ -53,20 +53,20 @@
   #{
     set text(size: 14pt)
     if work-type == WORK_TYPES.bachelor-thesis {
-      i8n("bachelor-thesis")
+      i18n("bachelor-thesis")
     } else {
-      i8n("master-thesis")
+      i18n("master-thesis")
     }
   }
 
   #v(1.5em)
   #{
-    i8n("degree-goal-declaration")
+    i18n("degree-goal-declaration")
   }
 
   #v(1.5cm)
   #{
-    i8n("submitted-by")
+    i18n("submitted-by")
   }
 
   #v(1em)
@@ -80,7 +80,7 @@
 
   #{
     set text(size: 11pt)
-    i8n("reviewed-by")
+    i18n("reviewed-by")
     sym.space
     mentor-name
   }

@@ -117,14 +117,14 @@
   ),
 )
 
-#let i8n(key) = context {
+#let i18n(key) = context {
   let lang = text.lang
   let translations = keys-to-lang.at(key)
   let value = translations.at(lang, default: translations.at("en"))
   value
 }
 
-#let i8n-declaration-page() = context {
+#let i18n-declaration-page() = context {
   let lang = text.lang
   if lang == "de" {
     include "declaration_de.typ"
@@ -133,7 +133,7 @@
   }
 }
 
-#let i8n-page-counter(current, total, numbering: auto) = context {
+#let i18n-page-counter(current, total, numbering: auto) = context {
   let lang = text.lang
   let numbering = page.numbering
   let numbering = if numbering == auto or numbering == none { "1" } else {
@@ -146,7 +146,7 @@
   ]
 }
 
-#let i8n-date-short(date) = context {
+#let i18n-date-short(date) = context {
   let lang = text.lang
   if lang == "de" [
     #date.display("[day].[month].[year]")
@@ -155,11 +155,11 @@
   ]
 }
 
-#let i8n-date-long(date) = context {
+#let i18n-date-long(date) = context {
   let lang = text.lang
   if lang == "de" [
-    // Currently does not support localization for month repr:long, so we use a fixed format.
-    #date.display("[day].[month].[year]")
+    #import "@preview/datify:1.3.0": display-date
+    #display-date(date, pattern: "d. MMMM yyyy")
   ] else [
     #date.display("[month repr:long] [day], [year]")
   ]

@@ -1,4 +1,4 @@
-#import "i8n.typ": i8n, i8n-page-counter
+#import "i18n.typ": i18n, i18n-page-counter
 #import "utils.typ": *
 
 /// This stile is applied to the entire project.
@@ -49,7 +49,7 @@
 
     #document.title
     #h(1fr)
-    #i8n-page-counter(
+    #i18n-page-counter(
       counter(page).get().first(),
       counter(page).final().first(),
     )
@@ -173,7 +173,7 @@
   set page(numbering: "1")
 
   // Configure actual bibliography style
-  set bibliography(style: "apa", title: i8n("bibliography"))
+  set bibliography(style: "apa", title: i18n("bibliography"))
 
   doc
 }

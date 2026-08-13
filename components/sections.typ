@@ -1,4 +1,4 @@
-#import "i8n.typ": i8n, i8n-declaration-page
+#import "i18n.typ": i18n, i18n-declaration-page
 #import "constants.typ": THESIS_STYLE
 #import "styles_modern.typ"
 #import "styles_classic.typ"
@@ -28,7 +28,7 @@
   show: style-preface
 
   // Content
-  i8n-declaration-page()
+  i18n-declaration-page()
 }
 
 /// Shows the acknowledgement section with the given content and style.
@@ -48,7 +48,7 @@
   show: style-preface
 
   // Content
-  heading(level: 1, i8n("acknowledgement"))
+  heading(level: 1, i18n("acknowledgement"))
   content
 }
 
@@ -66,7 +66,7 @@
   show: style-preface
 
   // Content
-  heading(level: 1, i8n("kurzfassung"))
+  heading(level: 1, i18n("kurzfassung"))
   content
 }
 
@@ -84,7 +84,7 @@
   show: style-preface
 
   // Content
-  heading(level: 1, i8n("abstract"))
+  heading(level: 1, i18n("abstract"))
   content
 }
 
@@ -103,8 +103,8 @@
 
   // Content
   heading(level: 1, if thesis-style == THESIS_STYLE.modern {
-    i8n("preamble")
-  } else { i8n("preface") })
+    i18n("preamble")
+  } else { i18n("preface") })
   content
 }
 
@@ -122,7 +122,7 @@
   show: style-preface
 
   // Content
-  outline(title: [#i8n("chapter-outline") <_ght-chapter-outline>])
+  outline(title: [#i18n("chapter-outline") <_ght-chapter-outline>])
 }
 
 /// Shows the abbreviations section with the given items and style.
@@ -141,10 +141,10 @@
   show: style-preface
 
   // Content
-  heading(level: 1, i8n("abbreviations"))
+  heading(level: 1, i18n("abbreviations"))
   table(
     columns: (2fr, 7fr),
-    table.header(strong(i8n("abbreviation")), strong(i8n("description"))),
+    table.header(strong(i18n("abbreviation")), strong(i18n("description"))),
     ..items.pairs().flatten(),
   )
 }
@@ -164,7 +164,7 @@
   show: style-preface
 
   // Content
-  outline(title: i8n("figure-outline"), target: figure.where(kind: image))
+  outline(title: i18n("figure-outline"), target: figure.where(kind: image))
 }
 
 /// Shows the table outline with the given style.
@@ -182,7 +182,7 @@
   show: style-preface
 
   // Content
-  outline(title: i8n("table-outline"), target: figure.where(kind: table))
+  outline(title: i18n("table-outline"), target: figure.where(kind: table))
 }
 
 /// Shows the bibliography section with the given bibliography and style.
@@ -226,7 +226,7 @@
   // Content
   if thesis-style == THESIS_STYLE.modern {
     // Autoinsert top level appendix heading
-    heading(level: 1, i8n("appendix"))
+    heading(level: 1, i18n("appendix"))
   }
   appendix
 }

@@ -1,4 +1,3 @@
-#import "i8n.typ": i8n-date-long
 #show: it => context {
   set text(font: ("Verdana", "Arial", text.font), size: 10pt)
   it

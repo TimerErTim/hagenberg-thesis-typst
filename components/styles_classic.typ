@@ -1,4 +1,4 @@
-#import "i8n.typ": i8n, i8n-page-counter
+#import "i18n.typ": i18n, i18n-page-counter
 #import "utils.typ": *
 
 /// This stile is applied to the entire project.
@@ -22,7 +22,7 @@
     #show: apply-sans-font
     #show: block.with(inset: (top: 1em))
     #set text(size: 10pt)
-    #i8n-page-counter(
+    #i18n-page-counter(
       counter(page).get().first(),
       counter(page).final().first(),
     )
@@ -116,7 +116,7 @@
   counter(page).update(1)
 
   // Setup headings
-  set heading(supplement: i8n("chapter"))
+  set heading(supplement: i18n("chapter"))
   show heading.where(level: 1): it => {
     colbreak(weak: true)
     it
@@ -204,7 +204,7 @@
   set page(numbering: "1")
 
   // Configure actual bibliography style
-  set bibliography(style: "apa", title: i8n("references"))
+  set bibliography(style: "apa", title: i18n("references"))
 
   doc
 }
@@ -214,7 +214,7 @@
   // Arabic for text sections = appendix
   set page(numbering: "1")
 
-  set heading(supplement: i8n("appendix"))
+  set heading(supplement: i18n("appendix"))
   counter(heading).update(0)
   show heading.where(level: 1): it => {
     colbreak(weak: true)
