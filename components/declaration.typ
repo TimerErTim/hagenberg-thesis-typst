@@ -1,5 +1,5 @@
 #import "utils.typ": apply-sans-font
-#import "i18n.typ": i18n
+#import "i18n.typ": i18n, i18n-translation
 
 #show: apply-sans-font
 #set text(size: 10pt)
@@ -16,7 +16,7 @@
   right: 2.27cm,
 ))
 
-= #i18n("declaration")
+#context heading(i18n-translation("declaration", text.lang))
 
 #i18n("declaration-content")
 
