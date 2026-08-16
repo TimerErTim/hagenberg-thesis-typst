@@ -129,10 +129,15 @@
   ),
 )
 
-#let i18n(key) = context {
-  let lang = text.lang
+#let i18n-translation(key, lang) = {
   let translations = keys-to-lang.at(key)
   let value = translations.at(lang, default: translations.at("en"))
+  value
+}
+
+#let i18n(key) = context {
+  let lang = text.lang
+  let value = i18n-translation(key, lang)
   value
 }
 

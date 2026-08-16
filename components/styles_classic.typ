@@ -1,4 +1,4 @@
-#import "i18n.typ": i18n, i18n-page-counter
+#import "i18n.typ": i18n, i18n-page-counter, i18n-translation
 #import "utils.typ": *
 
 /// This stile is applied to the entire project.
@@ -199,12 +199,15 @@
 }
 
 /// This style is applied to the bibliography section.
-#let bibliography-style(doc) = {
+#let bibliography-style(doc) = context {
   // Arabic for literature section
   set page(numbering: "1")
 
   // Configure actual bibliography style
-  set bibliography(style: "apa", title: i18n("references"))
+  set bibliography(style: "apa", title: i18n-translation(
+    "references",
+    text.lang,
+  ))
 
   doc
 }

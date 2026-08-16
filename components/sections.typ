@@ -1,4 +1,4 @@
-#import "i18n.typ": i18n
+#import "i18n.typ": i18n, i18n-translation
 #import "constants.typ": THESIS_STYLE
 #import "styles_modern.typ"
 #import "styles_classic.typ"
@@ -48,7 +48,7 @@
   show: style-preface
 
   // Content
-  heading(level: 1, i18n("acknowledgement"))
+  context heading(level: 1, i18n-translation("acknowledgement", text.lang))
   content
 }
 
@@ -66,7 +66,7 @@
   show: style-preface
 
   // Content
-  heading(level: 1, i18n("kurzfassung"))
+  context heading(level: 1, i18n-translation("kurzfassung", text.lang))
   content
 }
 
@@ -84,7 +84,7 @@
   show: style-preface
 
   // Content
-  heading(level: 1, i18n("abstract"))
+  context heading(level: 1, i18n-translation("abstract", text.lang))
   content
 }
 
@@ -102,9 +102,9 @@
   show: style-preface
 
   // Content
-  heading(level: 1, if thesis-style == THESIS_STYLE.modern {
-    i18n("preamble")
-  } else { i18n("preface") })
+  context heading(level: 1, if thesis-style == THESIS_STYLE.modern {
+    i18n-translation("preamble", text.lang)
+  } else { i18n-translation("preface", text.lang) })
   content
 }
 
@@ -122,7 +122,10 @@
   show: style-preface
 
   // Content
-  outline(title: [#i18n("chapter-outline") <_ght-chapter-outline>])
+  outline(title: [#context i18n-translation(
+    "chapter-outline",
+    text.lang,
+  ) <_ght-chapter-outline>])
 }
 
 /// Shows the abbreviations section with the given items and style.
@@ -141,7 +144,7 @@
   show: style-preface
 
   // Content
-  heading(level: 1, i18n("abbreviations"))
+  context heading(level: 1, i18n-translation("abbreviations", text.lang))
   table(
     columns: (2fr, 7fr),
     table.header(strong(i18n("abbreviation")), strong(i18n("description"))),
@@ -164,7 +167,10 @@
   show: style-preface
 
   // Content
-  outline(title: i18n("figure-outline"), target: figure.where(kind: image))
+  context outline(
+    title: i18n-translation("figure-outline", text.lang),
+    target: figure.where(kind: image),
+  )
 }
 
 /// Shows the table outline with the given style.
@@ -182,7 +188,10 @@
   show: style-preface
 
   // Content
-  outline(title: i18n("table-outline"), target: figure.where(kind: table))
+  context outline(
+    title: i18n-translation("table-outline", text.lang),
+    target: figure.where(kind: table),
+  )
 }
 
 /// Shows the bibliography section with the given bibliography and style.
@@ -226,7 +235,7 @@
   // Content
   if thesis-style == THESIS_STYLE.modern {
     // Autoinsert top level appendix heading
-    heading(level: 1, i18n("appendix"))
+    context heading(level: 1, i18n-translation("appendix", text.lang))
   }
   appendix
 }
