@@ -84,8 +84,13 @@
   if logical-level == none {
     logical-level = entry.element.level
   }
+  let element-location = entry.element.location()
+  if entry.element.func() == heading and entry.element.level == 1 {
+    element-location = nearest-top-level-heading(element-location)
+  }
+
   link(
-    entry.element.location(),
+    element-location,
     {
       let original-font = text.font
       show: if logical-level == 1 { apply-sans-font } else { it => it }
@@ -97,10 +102,9 @@
           box(width: 1fr, inset: (x: 0.5em), if logical-level != 1 {
             repeat([.], gap: 0.5em)
           })
-          let elem-location = entry.element.location()
           numbering(
-            elem-location.page-numbering(),
-            ..counter(page).at(elem-location),
+            element-location.page-numbering(),
+            ..counter(page).at(element-location),
           )
         },
         gap: if logical-level == 1 { 1em } else { 0.5em },

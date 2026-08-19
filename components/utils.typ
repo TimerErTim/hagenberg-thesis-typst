@@ -52,3 +52,25 @@
 
   func(is-inside-heading)
 }
+
+#let nearest-top-level-heading(location) = {
+  let next-pre-heading = query(
+    selector(<_eht-pre-heading>).after(location),
+  ).first(default: none)
+  if (
+    next-pre-heading == none
+      or query(
+        selector(<_eht-post-heading>)
+          .after(location)
+          .before(next-pre-heading.location()),
+      ).len()
+        > 0
+  ) {
+    // There has to we have to be inside a heading currently, so we can just return the previous pre-heading
+    return query(selector(<_eht-pre-heading>).before(location)).last(
+      default: none,
+    )
+  } else {
+    return next-pre-heading.location()
+  }
+}
