@@ -216,6 +216,15 @@
   }
 
   // Appendix section with styles applied if applicable
+  // In classic style, abbrevations are part of the appendix...
+  let appendix = appendix
+  if thesis-style == THESIS_STYLE.classic and abbreviations != none {
+    appendix = {
+      appendix
+      abbreviations
+    }
+  }
+
   let appendix = if appendix != none {
     appendix-section(
       appendix,
@@ -249,7 +258,7 @@
       content,
       appendix,
       bibliography,
-      abbreviations,
+      //abbreviations, // shown as part of the appendix
       figure-outline,
       table-outline,
     )
