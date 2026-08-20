@@ -74,6 +74,7 @@
     it
     current-top-heading.update(it)
   }
+  show heading: mark-heading-boundaries
   show heading: set block(above: 1.5em, below: 1em)
   show heading.where(level: 1): set block(inset: (top: 0.25em))
   // Default heading style for the whole document
@@ -109,7 +110,6 @@
 
     numbering("1.1", ..args)
   }))
-  show heading: mark-heading-boundaries
 
   doc
 }
@@ -147,9 +147,38 @@
   doc
 }
 
+
+#let _outline-entry(entry, logical-level: none) = {
+  if logical-level == none {
+    logical-level = entry.element.level
+  }
+  let element-location = entry.element.location()
+  if entry.element.func() == heading and entry.element.level == 1 {
+    element-location = nearest-top-level-heading(element-location)
+  }
+
+  link(
+    element-location,
+    entry.indented(
+      entry.prefix(),
+      {
+        entry.body()
+        box(entry.fill, width: 1fr, inset: (x: 1mm))
+        numbering(
+          element-location.page-numbering(),
+          ..counter(page).at(element-location),
+        )
+      },
+    ),
+  )
+}
+
+
 /// This style is applied to the chapter outline.
 #let chapter-outline-style(doc) = {
   set outline(indent: auto)
+
+  show outline.entry: _outline-entry
 
   doc
 }
