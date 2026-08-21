@@ -41,7 +41,7 @@
   thesis-style: THESIS_STYLE.classic,
 ) = {
   // Behavioral specs integral for document
-  set heading(offset: 1, outlined: false)
+  set heading(offset: 1)
 
   // Aesthetic styles
   show: base-style(thesis-style).acknowledgement-style

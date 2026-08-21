@@ -125,6 +125,8 @@
 
 /// This style is applied to the acknowledgement section.
 #let acknowledgement-style(doc) = {
+  set heading(outlined: false)
+
   doc
 }
 
