@@ -161,17 +161,6 @@
   show outline.entry: _outline-entry
   show outline.entry.where(level: 1): set text(weight: "semibold")
   show outline.entry.where(level: 1): set block(above: 1.5em)
-  set outline.entry(fill: {
-    set text(size: root-em)
-
-    repeat(
-      [
-        #set text(size: root-em)
-        .
-      ],
-      gap: 0.5em,
-    )
-  })
 
   doc
 }
