@@ -2,7 +2,7 @@
 #import "utils.typ": *
 
 /// This style is applied to the entire project.
-#let global-style(doc) = {
+#let global-style(doc) = context {
   set page(paper: "a4", margin: (top: 6.7cm, bottom: 2.5cm, rest: 3.25cm))
   set text(size: 12pt)
   set par(
@@ -36,10 +36,22 @@
     )
   }
 
-  show figure.where(kind: image): set figure(supplement: i18n("figure"))
-  show figure.where(kind: table): set figure(supplement: i18n("table"))
-  show figure.where(kind: raw): set figure(supplement: i18n("raw"))
-  show math.equation: set math.equation(supplement: i18n("equation"))
+  show figure.where(kind: image): set figure(supplement: i18n-translation(
+    "figure",
+    text.lang,
+  ))
+  show figure.where(kind: table): set figure(supplement: i18n-translation(
+    "table",
+    text.lang,
+  ))
+  show figure.where(kind: raw): set figure(supplement: i18n-translation(
+    "raw",
+    text.lang,
+  ))
+  show math.equation: set math.equation(supplement: i18n-translation(
+    "equation",
+    text.lang,
+  ))
 
   // Setup supplements and formatting of references
   show ref.where(form: "normal"): set ref(supplement: it => if it.func()
@@ -111,7 +123,10 @@
   set page(numbering: "i")
 
   // Setup headings
-  set heading(numbering: none, supplement: i18n("ref-section"))
+  set heading(numbering: none, supplement: i18n-translation(
+    "ref-section",
+    text.lang,
+  ))
   // Default heading style for the whole document
   show heading.where(level: 1): set text(size: 1.6em)
   show heading.where(level: 2): set text(size: 1.25em)
@@ -187,7 +202,10 @@
   counter(page).update(1)
 
   // Setup headings
-  show heading.where(level: 1): set heading(supplement: i18n("chapter"))
+  show heading.where(level: 1): set heading(supplement: i18n-translation(
+    "chapter",
+    text.lang,
+  ))
   // Reset figure and math counters per chapter
   show heading.where(level: 1): it => {
     reset-listing-counters()
@@ -237,9 +255,14 @@
   doc
 }
 
-#let abbreviations-style(doc) = {
+#let abbreviations-style(doc) = context {
   // Arabic for abbreviations section
   set page(numbering: "1")
+
+  show: figure.with(caption: i18n-translation(
+    "abbreviations-table-caption",
+    text.lang,
+  ))
 
   doc
 }
@@ -282,7 +305,10 @@
   // Arabic for text sections = appendix
   set page(numbering: "1")
 
-  show heading.where(level: 1): set heading(supplement: i18n("appendix"))
+  show heading.where(level: 1): set heading(supplement: i18n-translation(
+    "appendix",
+    text.lang,
+  ))
   counter(heading).update(0)
   show heading.where(level: 1): it => {
     reset-listing-counters()

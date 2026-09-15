@@ -7,6 +7,8 @@ Project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-09-16
+
 ### Added
 - Hierarchical per-chapter numbering for figures, tables, code listings, and equations (`1.1` in main content, `A.1` in appendix)
 - Localized caption supplements and reference abbreviations (`Abb.`, `Tab.`, `Gl.`, `Prog.`) ([#10](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/10))
@@ -22,6 +24,7 @@ Project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Figure captions have bold labels and use a grid layout for smart indentation ([#11](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/11))
 - Built-in styles no longer force Times New Roman (classic) or Arial (modern) on body text; serif uses Typst’s default fonts ([#9](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/9))
 - Classic and modern styles: tighter academic paragraph and float spacing ([#9](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/9))
+- `mise.toml` now drops Typst patch version requirement -> selects latest by default ([#12](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/12))
 
 ### Fixed
 - Heading page location numbers in modern style outline
@@ -68,7 +71,8 @@ Project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - Switch license to MIT-0
 
-[Unreleased]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.2.2...HEAD
+[0.2.2]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/TimerErTim/hagenberg-thesis-typst/releases/tag/v0.1.0

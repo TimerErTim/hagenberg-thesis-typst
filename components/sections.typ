@@ -138,10 +138,6 @@
 
   // Content
   context heading(level: 1, i18n-translation("abbreviations", text.lang))
-  show: figure.with(caption: i18n-translation(
-    "abbreviations-table-caption",
-    text.lang,
-  ))
   table(
     columns: (2fr, 7fr),
     table.header(strong(i18n("abbreviation")), strong(i18n("description"))),

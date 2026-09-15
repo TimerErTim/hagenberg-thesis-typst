@@ -25,7 +25,7 @@ tasks/
 
 # Exclude documentation only
 CHANGELOG.md
-CONTRIBUTING.md
+#CONTRIBUTING.md  # May not be ignored due to reference by README.md
 
 # Exclude the ignore file itself
 .publishignore

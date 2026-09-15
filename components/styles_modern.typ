@@ -2,7 +2,7 @@
 #import "utils.typ": *
 
 /// This stile is applied to the entire project.
-#let global-style(doc) = {
+#let global-style(doc) = context {
   set page(paper: "a4", margin: (bottom: 2cm, rest: 2.5cm))
   set text(size: 11pt)
   show: apply-sans-font
@@ -33,10 +33,22 @@
     )
   }
 
-  show figure.where(kind: image): set figure(supplement: i18n("figure"))
-  show figure.where(kind: table): set figure(supplement: i18n("table"))
-  show figure.where(kind: raw): set figure(supplement: i18n("raw"))
-  show math.equation: set math.equation(supplement: i18n("equation"))
+  show figure.where(kind: image): set figure(supplement: i18n-translation(
+    "figure",
+    text.lang,
+  ))
+  show figure.where(kind: table): set figure(supplement: i18n-translation(
+    "table",
+    text.lang,
+  ))
+  show figure.where(kind: raw): set figure(supplement: i18n-translation(
+    "raw",
+    text.lang,
+  ))
+  show math.equation: set math.equation(supplement: i18n-translation(
+    "equation",
+    text.lang,
+  ))
 
   // Setup supplements and formatting of references
   show ref.where(form: "normal"): set ref(supplement: it => if it.func()
@@ -145,15 +157,14 @@
   show heading: set block(above: 1.5em, below: 1em)
   show heading.where(level: 1): set block(inset: (top: 0.25em))
   // Default heading style for the whole document
-  set heading(numbering: none, supplement: i18n("ref-section"))
+  set heading(numbering: none, supplement: i18n-translation(
+    "ref-section",
+    text.lang,
+  ))
   show heading: set align(right)
 
   // Typography
   set par(spacing: 2em)
-
-  // Hierarchical numbering
-  set figure(numbering: hierarchical-numbering("1.1"))
-  set math.equation(numbering: hierarchical-numbering("(1.1)"))
 
   doc
 }
@@ -184,6 +195,10 @@
 
     numbering("1.1", ..args)
   }))
+
+  // Hierarchical numbering
+  set figure(numbering: hierarchical-numbering("1.1"))
+  set math.equation(numbering: hierarchical-numbering("(1.1)"))
 
   doc
 }
