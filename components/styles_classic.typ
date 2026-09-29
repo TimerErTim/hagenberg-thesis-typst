@@ -259,7 +259,7 @@
   // Arabic for abbreviations section
   set page(numbering: "1")
 
-  show: figure.with(caption: i18n-translation(
+  show table: figure.with(caption: i18n-translation(
     "abbreviations-table-caption",
     text.lang,
   ))
