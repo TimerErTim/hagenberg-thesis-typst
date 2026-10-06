@@ -1,4 +1,4 @@
-#let is-classic = eval(sys.inputs.at("is-classic", default: "false"))
+#let is-classic = eval(sys.inputs.at("is-classic", default: "true"))
 
 #import "../lib.typ": (
   LICENSE_TYPES, THESIS_STYLE, WORK_TYPES, copyright-page, full-thesis,
