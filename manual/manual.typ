@@ -301,6 +301,7 @@ Then pass it to the `abbreviations` template parameter:
   thesis-style: THESIS_STYLE.modern,
   style-preface: it => {
     show heading: none
+    set heading(outlined: false)
     let heading-counter = counter(heading).at(here())
     it
     counter(heading).update(heading-counter)
