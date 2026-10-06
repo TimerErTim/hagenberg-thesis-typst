@@ -7,6 +7,9 @@ Project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+- Classic style paragraph spacing increased to 1.2em ([#16](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/14))
+
 ### Fixed
 - Abbreviation section in `classic` style annotates table correctly ([#13](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/13))
 

@@ -270,6 +270,20 @@ Many users might want to change the font from the default base style. For this, 
   ]
 }
 
+=== Adjust paragraph spacing
+
+The paragraph spacing can be adjusted via a `par` set-Rule in the `document-style` style hook. The default spacing is `1.2em`.
+
+#codly(skips: ((4, 3),))
+```typ
+#show: full-thesis.with(
+  document-style: it => {
+    set par(spacing: 0.5em)  // Visually no spacing
+    it
+  },
+)
+```
+
 === Abbreviation table
 
 An abbreviation table is simply a Typst `dictionary` where the keys are the abbreviations and the values are the full definitions.

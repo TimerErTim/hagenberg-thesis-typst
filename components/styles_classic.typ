@@ -7,8 +7,8 @@
   set text(size: 12pt)
   set par(
     justify: true,
-    first-line-indent: 1.5em,
-    spacing: 0.8em,
+    first-line-indent: 5mm,
+    spacing: 1.2em,
     linebreaks: "optimized",
     justification-limits: (
       tracking: (min: -0.05em, max: 0.05em),
