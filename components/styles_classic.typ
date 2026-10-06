@@ -3,7 +3,7 @@
 
 /// This style is applied to the entire project.
 #let global-style(doc) = context {
-  set page(paper: "a4", margin: (top: 6.7cm, bottom: 2.5cm, rest: 3.25cm))
+  set page(paper: "a4", margin: (top: 3cm, bottom: 2.5cm, rest: 3.25cm))
   set text(size: 12pt)
   set par(
     justify: true,
@@ -98,18 +98,46 @@
 /// This style is applied to the entire document (project without title page).
 #let document-style(doc) = context {
   // Setup page decorations
-  let header = []
-  let footer = context [
-    #set align(top + page.number-align.x)
-    #show: apply-sans-font
-    #show: block.with(inset: (top: 1em))
-    #set text(size: 10pt)
-    #i18n-page-counter(
-      counter(page).get().first(),
-      counter(page).final().first(),
-    )
-  ]
-  //set page(header: header, header-ascent: 0cm)
+  let header = context {
+    let on-same-page = is-top-level-heading-on-same-page(here())
+    show: block.with(height: 1em + 1cm)
+    set align(top)
+    if not on-same-page {
+      grid(
+        columns: (1fr, 1fr),
+        align: (left, right),
+        {
+          let next-heading-location = next-top-level-heading-location(here())
+          let next-heading = query(
+            heading.where(level: 1).before(next-heading-location),
+          ).last(default: none)
+          show: apply-sans-font.with()
+          if next-heading != none [
+            #numbering(next-heading.numbering, ..counter(heading).at(next-heading.location())).
+            #next-heading.body
+          ]
+        },
+        i18n-page-counter(
+          counter(page).get().first(),
+          counter(page).final().first(),
+        ),
+      )
+    }
+  }
+  let footer = context {
+    let on-same-page = is-top-level-heading-on-same-page(here())
+    set align(top + page.number-align.x)
+    show: apply-sans-font
+    show: block.with(inset: (top: 1em))
+    set text(size: 0.9em)
+    if on-same-page {
+      i18n-page-counter(
+        counter(page).get().first(),
+        counter(page).final().first(),
+      )
+    }
+  }
+  set page(header: header, header-ascent: 0cm)
   set page(footer: footer, footer-descent: 0cm)
 
   // Adjust page margin to account for header and footer
@@ -128,14 +156,14 @@
     text.lang,
   ))
   // Default heading style for the whole document
-  show heading.where(level: 1): set text(size: 1.6em)
+  show heading.where(level: 1): set text(size: 1.55em)
   show heading.where(level: 2): set text(size: 1.25em)
   show heading.where(level: 3): set text(size: 1.15em)
   show heading.where(level: 4): set text(size: 1.1em)
   show heading: mark-heading-boundaries
 
   show heading: set block(above: 1.5em, below: 1em)
-  show heading.where(level: 1): set block(inset: (bottom: 1.5cm))
+  show heading.where(level: 1): set block(inset: (bottom: 1.5cm, top: 2cm))
   show heading: apply-sans-font
   show heading: set text(weight: "regular")
 
@@ -149,7 +177,7 @@
       let number = numbering(numbering-str, ..args)
       if is-inside-heading and args.pos().len() == 1 {
         set text(size: 0.68em)
-        show: block.with(inset: 0pt, below: 1.1cm)
+        show: block.with(below: 1.1cm, inset: 0pt)
         heading.supplement
         sym.space
         number
@@ -168,7 +196,7 @@
   }
   let element-location = entry.element.location()
   if entry.element.func() == heading and entry.element.level == 1 {
-    element-location = nearest-top-level-heading(element-location)
+    element-location = nearest-top-level-heading-location(element-location)
   }
 
   link(

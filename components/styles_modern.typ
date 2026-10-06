@@ -245,7 +245,9 @@
   }
   let element-location = entry.element.location()
   if entry.element.func() == heading and entry.element.level == 1 {
-    element-location = nearest-top-level-heading(element-location)
+    element-location = nearest-top-level-heading-location(
+      element-location,
+    )
   }
 
   link(

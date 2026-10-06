@@ -30,10 +30,74 @@
 
 #let mark-heading-boundaries(body) = [
   // This makes distinction between heading and references (f.e. in outline) possible
-  #metadata(none) <_eht-pre-heading>
+  #metadata(body.level) <_eht-pre-heading>
   #body
-  #metadata(none) <_eht-post-heading>
+  #metadata(body.level) <_eht-post-heading>
 ]
+
+
+
+#let next-top-level-heading-location(location) = {
+  let next-pre-heading = query(
+    selector(metadata.where(value: 1)).and(<_eht-pre-heading>).after(location),
+  ).first(default: none)
+
+  if next-pre-heading == none {
+    return none
+  }
+
+  let next-post-heading = query(
+    selector(metadata.where(value: 1))
+      .and(<_eht-post-heading>)
+      .after(location)
+      .before(next-pre-heading.location()),
+  ).first(default: none)
+
+  if next-post-heading != none {
+    // There is a post-heading before the next pre-heading, so we are inside a heading
+    return query(
+      selector(metadata.where(value: 1))
+        .and(<_eht-pre-heading>)
+        .before(next-post-heading.location()),
+    )
+      .last()
+      .location()
+  }
+
+  // Just return the heading location
+  return next-pre-heading.location()
+}
+
+#let previous-top-level-heading-location(location) = {
+  let previous-pre-heading = query(
+    selector(metadata.where(value: 1)).and(<_eht-pre-heading>).before(location),
+  ).last(default: none)
+
+  if previous-pre-heading == none {
+    return none
+  }
+
+  // Just return the heading location
+  return previous-pre-heading.location()
+}
+
+#let is-top-level-heading-on-same-page(location) = {
+  let before = previous-top-level-heading-location(location)
+  let after = next-top-level-heading-location(location)
+
+  let locations = (before, after).filter(it => it != none)
+
+  return locations.any(it => it.page() == location.page())
+}
+
+#let nearest-top-level-heading-location(location) = {
+  let next-top-level-heading = next-top-level-heading-location(location)
+  if next-top-level-heading == none {
+    return previous-top-level-heading-location(location)
+  } else {
+    return next-top-level-heading
+  }
+}
 
 #let with-inside-heading(func) = context {
   let next-after-heading = query(selector(<_eht-post-heading>).after(here()))
@@ -52,29 +116,12 @@
     }
   }
 
-  func(is-inside-heading)
-}
+  let is-inside-heading = (
+    previous-top-level-heading-location(here())
+      == next-top-level-heading-location(here())
+  )
 
-#let nearest-top-level-heading(location) = {
-  let next-pre-heading = query(
-    selector(<_eht-pre-heading>).after(location),
-  ).first(default: none)
-  if (
-    next-pre-heading == none
-      or query(
-        selector(<_eht-post-heading>)
-          .after(location)
-          .before(next-pre-heading.location()),
-      ).len()
-        > 0
-  ) {
-    // There has to we have to be inside a heading currently, so we can just return the previous pre-heading
-    return query(selector(<_eht-pre-heading>).before(location)).last(
-      default: none,
-    )
-  } else {
-    return next-pre-heading.location()
-  }
+  func(is-inside-heading)
 }
 
 #let hierarchical-numbering(style, levels: 1) = (..ns) => {

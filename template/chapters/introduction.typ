@@ -4,6 +4,8 @@
 
 = Introduction <introduction_heading>
 
+Umfragedaten sind ein etabliertes Instrument zur Erhebung von Einstellungen, Meinungen und Verhaltensweisen
+
 #lorem(10)
 #{
   show: it => [#it <introduction_figure>]
@@ -26,6 +28,11 @@
 #lorem(70)
 
 #lorem(30)
+
+#for len in (40, 100, 45, 70, 90, 80) {
+  lorem(len)
+  parbreak()
+}
 
 Let's reference @introduction_figure here.
 
