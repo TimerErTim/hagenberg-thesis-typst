@@ -7,6 +7,8 @@ Project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.2.3] - 2026-10-07
+
 ### Added
 - Classic: Add running headers so subsequent pages of new chapters show more compact margin ([#17](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/17), [#19](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/19))
 
@@ -86,7 +88,8 @@ Project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Changed
 - Switch license to MIT-0
 
-[Unreleased]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.2.2...HEAD
+[Unreleased]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.2.3...HEAD
+[0.2.3]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.2.2...v0.2.3
 [0.2.2]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/TimerErTim/hagenberg-thesis-typst/compare/v0.1.0...v0.2.0
