@@ -163,10 +163,10 @@
     text.lang,
   ))
   // Default heading style for the whole document
-  show heading.where(level: 1): set text(size: 1.55em)
-  show heading.where(level: 2): set text(size: 1.25em)
-  show heading.where(level: 3): set text(size: 1.15em)
-  show heading.where(level: 4): set text(size: 1.1em)
+  show heading.where(level: 1): set text(size: 1.4em)
+  show heading.where(level: 2): set text(size: 1.15em)
+  show heading.where(level: 3): set text(size: 1.1em)
+  show heading.where(level: 4): set text(size: 1.05em)
   show heading: mark-heading-boundaries
 
   show heading: set block(above: 1.5em, below: 1em)
@@ -183,7 +183,7 @@
     is-inside-heading => context {
       let number = numbering(numbering-str, ..args)
       if is-inside-heading and args.pos().len() == 1 {
-        set text(size: 0.68em)
+        set text(size: 0.8em)
         show: block.with(below: 1.1cm, inset: 0pt)
         heading.supplement
         sym.space
