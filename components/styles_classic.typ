@@ -104,16 +104,23 @@
     set align(top)
     if not on-same-page {
       grid(
-        columns: (1fr, 1fr),
+        columns: (1fr, auto),
+        gutter: 1cm,
         align: (left, right),
         {
-          let next-heading-location = next-top-level-heading-location(here())
+          let next-heading-location = previous-top-level-heading-location(
+            here(),
+          )
           let next-heading = query(
             heading.where(level: 1).before(next-heading-location),
           ).last(default: none)
           show: apply-sans-font.with()
           if next-heading != none [
-            #numbering(next-heading.numbering, ..counter(heading).at(next-heading.location())).
+            #numbering(
+              next-heading.numbering,
+              ..counter(heading).at(next-heading.location()),
+            )
+            #show: box.with(inset: (left: 1mm))
             #next-heading.body
           ]
         },
