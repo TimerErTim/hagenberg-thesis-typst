@@ -217,7 +217,7 @@
             ..counter(page).at(element-location),
           )
         },
-        gap: if logical-level == 1 { 1em } else { 0.5em },
+        gap: if logical-level == 1 { 1em } else { 0.75em },
       )
     },
   )
@@ -278,7 +278,7 @@
   let root-em = text.size
   show outline.entry: _outline-entry
   show outline.entry.where(level: 1): set text(weight: "semibold")
-  show outline.entry.where(level: 1): set block(above: 1.5em)
+  show outline.entry.where(level: 1): set block(above: 6mm)
 
   doc
 }
