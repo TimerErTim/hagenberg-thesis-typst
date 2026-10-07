@@ -278,7 +278,7 @@
   let root-em = text.size
   show outline.entry: _outline-entry
   show outline.entry.where(level: 1): set text(weight: "semibold")
-  show outline.entry.where(level: 1): set block(above: 1.5em)
+  show outline.entry.where(level: 1): set block(above: 6mm)
 
   doc
 }

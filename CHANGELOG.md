@@ -11,7 +11,8 @@ Project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Classic: Add running headers so subsequent pages of new chapters show more compact margin ([#17](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/17))
 
 ### Changed
-- Classic style paragraph spacing increased to 1.2em ([#16](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/14))
+- Classic: Paragraph spacing increased to 1.2em ([#16](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/14))
+- Classic: Chapter outline top-level heading spacing reduced to 1.3em ([#18](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/18))
 
 ### Fixed
 - Abbreviation section in `classic` style annotates table correctly ([#13](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/13))
