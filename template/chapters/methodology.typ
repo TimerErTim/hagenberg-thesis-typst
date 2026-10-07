@@ -1,6 +1,6 @@
 // Demonstration chapter, will be completely replaced with your own chapter composition
 
-= Methodology
+= Implementation, Experiments and Analysis
 
 #lorem(30)
 

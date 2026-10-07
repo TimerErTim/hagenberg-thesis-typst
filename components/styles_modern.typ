@@ -145,9 +145,9 @@
   set page(numbering: "I")
 
   // Setup headings
-  show heading.where(level: 1): set text(size: 1.6em)
-  show heading.where(level: 2): set text(size: 1.4em)
-  show heading.where(level: 3): set text(size: 1.25em)
+  show heading.where(level: 1): set text(size: 1.5em)
+  show heading.where(level: 2): set text(size: 1.3em)
+  show heading.where(level: 3): set text(size: 1.15em)
   show heading.where(level: 4): set text(size: 1.1em)
   show heading.where(level: 1): it => {
     it
@@ -164,7 +164,7 @@
   show heading: set align(right)
 
   // Typography
-  set par(spacing: 2em)
+  set par(spacing: 1.2em)
 
   doc
 }
@@ -214,26 +214,21 @@
 
 /// This style is applied to the acknowledgement section.
 #let acknowledgement-style(doc) = {
-  set heading(outlined: false)
+  set heading(outlined: true)
 
   doc
 }
 
 /// This style is applied to the abstract section (both german and english).
 #let abstract-style(doc) = {
-  // Arabic for text sections = abstract
-  set page(numbering: "1")
-  set heading(offset: 1, outlined: false)
+  set heading(offset: 1, outlined: true)
 
   doc
 }
 
 /// This style is applied to the preamble section.
 #let preamble-style(doc) = {
-  // Arabic for text sections = abstract
-  set page(numbering: "1")
-
-  set heading(offset: 1, outlined: false)
+  set heading(offset: 1, outlined: true)
 
   doc
 }
@@ -272,6 +267,8 @@
   set outline(indent: auto)
 
   show outline.entry: _outline-entry
+  show outline.entry.where(level: 1): set block(above: 4mm)
+  show outline.entry.where(level: 1): strong
 
   doc
 }
@@ -282,11 +279,15 @@
 
 /// This style is applied to the figure outline.
 #let figure-outline-style(doc) = {
+  set page(numbering: "1")
+
   show outline.entry: _outline-entry.with(logical-level: 2)
   doc
 }
 
 #let table-outline-style(doc) = {
+  set page(numbering: "1")
+
   show outline.entry: _outline-entry.with(logical-level: 2)
   doc
 }
@@ -310,6 +311,8 @@
   reset-listing-counters()
 
   set heading(offset: 1)
+  show heading: set align(left)
+  show heading.where(level: 1): set align(right)
 
   // Arabic for text sections = appendix
   set page(numbering: "1")
