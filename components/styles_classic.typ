@@ -217,7 +217,7 @@
             ..counter(page).at(element-location),
           )
         },
-        gap: if logical-level == 1 { 1em } else { 0.5em },
+        gap: if logical-level == 1 { 1em } else { 0.75em },
       )
     },
   )
