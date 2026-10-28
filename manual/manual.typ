@@ -82,7 +82,7 @@ First import the template package:
 #raw(
   strfmt(
     ```typ
-    #import "@preview/easy-hgb-thesis:{version}": full-thesis, titlepage, copyright-page, WORK_TYPES, LICENSE_TYPES
+    #import "@preview/easy-hgb-thesis:{version}": full-thesis, titlepage, copyright-page, generative-ai-documentation, WORK_TYPES, LICENSE_TYPES
     ```.text,
     version: package-metadata.package.version,
   ),
@@ -178,7 +178,7 @@ This information is embedded in the metadata of the compiled PDF. It is also pic
 
 === Titlepage
 
-The titlepage is customizable via the `titlepage` template parameter. The template simply prepends the titlepage to the document while applying `global-style` (without `document-style`).
+The titlepage is customizable via the `titlepage` template parameter. The template simply prepends the titlepage to the document while applying `global-style` (without `document-style`). Its parameters are documented inline on the `titlepage` function; required values are the course of study and mentor name, while degree, submission date, work type, study-program label, and place can be overridden as needed.
 
 #codly(skips: ((7, 3),))
 ```typ
@@ -198,6 +198,26 @@ Omitting the titlepage is as simple as passing *`none`*:
   titlepage: none,
 )
 ```
+
+=== Generative AI documentation
+
+Import `generative-ai-documentation` along with the other package components. It provides the responsible-use confirmations and a detailed activity table. All fixed headings, instructions, activity names, and description bullets are localized automatically using the global `text.lang` setting (`"en"` or `"de"`); no language parameter is needed. The component and its parameters are documented inline.
+
+The confirmation parameters default to `false`. Each activity has a `*-tools-used` parameter and a matching `*-tool-usage` parameter; both default to empty content (`[]`). Supply plain content, such as a tool name or a short description of what it did and which thesis sections were affected. For example:
+
+#codly(skips: ((4, 3),))
+```typ
+#generative-ai-documentation(
+  verification-confirmed: true,
+  responsibility-confirmed: true,
+  literature-search-tools-used: [ChatGPT, Elicit],
+  literature-search-tool-usage: [Used to discover search terms and summarize candidate papers for the literature review; all sources and summaries were checked by the author.],
+  coding-tools-used: [GitHub Copilot],
+  coding-tool-usage: [Used to suggest unit tests and explain errors in the implementation chapter.],
+)
+```
+
+Available activity parameter prefixes are `idea-generation`, `literature-search`, `methodology`, `coding`, `data-analysis`, `interpretation`, `structuring`, `text-generation`, `translation`, `text-review`, and `citation-management`. Use the same prefix for both parameters, for example `data-analysis-tools-used` and `data-analysis-tool-usage`. You can omit activities that were not applicable; their table cells remain blank. Include a more detailed account in the relevant thesis sections where required.
 
 === Copyright page
 

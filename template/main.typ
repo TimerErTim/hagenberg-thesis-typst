@@ -4,6 +4,7 @@
 
 #import "@preview/easy-hgb-thesis:0.2.3": (
   LICENSE_TYPES, WORK_TYPES, copyright-page, full-thesis, titlepage,
+  generative-ai-documentation,
 )
 
 // We configure the document data here, this will be in the title page and others
@@ -36,7 +37,11 @@
   kurzfassung: include "chapters/kurzfassung.typ",
   abstract: include "chapters/abstract.typ",
   preamble: include "chapters/preamble.typ", // Can be deleted if not required
-  appendix: include "chapters/appendix.typ", // Can be deleted if not required
+  appendix: [ // Can be deleted if not required
+    #include "chapters/appendix.typ"
+
+    #generative-ai-documentation()
+  ],
   abbreviations: abbr, // Can be deleted if you don't need abbreviations
   bibl: bibliography("bib.yaml"), // Can be replaced with a BibLaTex file,
 
