@@ -6,7 +6,7 @@ usage = """
 flag "--check" env="FMT_CHECK_ONLY" help="Only check if the code is formatted"
 """
 run = [
-    "typstyle {{'--diff' if usage.check else '-i'}} ./*.typ ./components/*.typ ./template/**/*.typ ./thumbnail/*.typ ./manual/*.typ --timing"
+    "typstyle {{'--diff' if usage.check else '-i'}} ./*.typ ./components/*.typ ./template/**/*.typ ./thumbnail/*.typ ./manual/*.typ --timing --wrap-text=fill-sentence"
 ]
 
 ["fmt:lines"]

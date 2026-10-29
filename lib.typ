@@ -1,5 +1,8 @@
 #import "components/template.typ": full-thesis
 #import "components/titlepage.typ": titlepage
+#import "components/generative_ai_documentation.typ": (
+  generative-ai-documentation,
+)
 #import "components/copyright.typ": copyright-page
 #import "components/sections.typ": (
   abbreviations-section, abstract-section, acknowledgement-section,

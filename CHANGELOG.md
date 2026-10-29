@@ -7,6 +7,12 @@ Project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+- Generative AI Documentation chapter ([#22](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/22))
+
+### Changed
+- Declaration updated according to new post-gen-AI guidelines ([#22](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/22))
+
 ## [0.2.3] - 2026-10-07
 
 ### Added

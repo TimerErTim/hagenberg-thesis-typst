@@ -48,27 +48,34 @@
 
 = Setup
 
-I personally recommend following @quick-start for most seamless setup. You can always fall back to the manual setup in @manual-setup below.
+I personally recommend following @quick-start for most seamless setup.
+You can always fall back to the manual setup in @manual-setup below.
 
 == Prerequisites
 
 You only need a *Typst* compiler, with different options for installation:
 
 - #link("https://typst.app/open-source/#download")[Typst CLI]
-- #link("https://typst.app/")[Typst Web App] (for easy collaboration with others)
-- #link("https://github.com/Myriad-Dreamin/tinymist")[Tinymist LSP] (personal recommendation)
+- #link("https://typst.app/")[Typst Web App] (for easy collaboration with
+  others)
+- #link("https://github.com/Myriad-Dreamin/tinymist")[Tinymist LSP] (personal
+  recommendation)
   - one-click install extension for VSCode based editors
   - manual integration with any other LSP supporting editors
 
 == Quick start <quick-start>
 
-To start with a fresh, pre-configured project, either run the following command in your terminal, assuming you have the CLI installed:
+To start with a fresh, pre-configured project, either run the following command
+in your terminal, assuming you have the CLI installed:
 
 ```sh
 typst init @preview/easy-hgb-thesis
 ```
 
-Or sign-in to the *Typst Web App*, navigate to the #link("https://typst.app/universe/package/easy-hgb-thesis")[easy-hgb-thesis Template on Typst Universe], and click *"Create Project in app"*.
+Or sign-in to the *Typst Web App*, navigate to the #link(
+  "https://typst.app/universe/package/easy-hgb-thesis",
+)[easy-hgb-thesis Template on Typst Universe], and click *"Create Project in
+app"*.
 
 == Manual installation <manual-setup>
 
@@ -82,7 +89,7 @@ First import the template package:
 #raw(
   strfmt(
     ```typ
-    #import "@preview/easy-hgb-thesis:{version}": full-thesis, titlepage, copyright-page, WORK_TYPES, LICENSE_TYPES
+    #import "@preview/easy-hgb-thesis:{version}": full-thesis, titlepage, copyright-page, generative-ai-documentation, WORK_TYPES, LICENSE_TYPES
     ```.text,
     version: package-metadata.package.version,
   ),
@@ -122,29 +129,39 @@ This document will explain...
 
 ```
 
-The document is now ready to be compiled and can be customized according to your needs. Refer to @customization for more information.
+The document is now ready to be compiled and can be customized according to your
+needs.
+Refer to @customization for more information.
 
 == Compilation
 
-I recommend using the `typst compile` command of the offical *Typst CLI* binary to compile the document or tools listed in @mise-en-place. This will produce a PDF file.
+I recommend using the `typst compile` command of the offical *Typst CLI* binary
+to compile the document or tools listed in @mise-en-place.
+This will produce a PDF file.
 
 ```sh
 typst compile main.typ Your_Thesis.pdf
 ```
 
-If you want to conform to specific PDF standards, you can specify the standard with the `--pdf-standard` flag.
+If you want to conform to specific PDF standards, you can specify the standard
+with the `--pdf-standard` flag.
 
 ```sh
 typst compile main.typ Your_Thesis.pdf --pdf-standard a-3u --format pdf
 ```
 
-For a list of available standards and their specifications, refer to the #link("https://typst.app/docs/reference/pdf/")[official Typst documentation].
+For a list of available standards and their specifications, refer to the #link(
+  "https://typst.app/docs/reference/pdf/",
+)[official Typst documentation].
 
 Alternatively, you can download a compiled PDF from the *Typst Web App*.
 
 = Customization <customization>
 
-The template is well documented with inline comments and docstrings. Quick exploration should reveal most customization options. An important concept are style hooks, discussed further down below in @style-hooks.
+The template is well documented with inline comments and docstrings.
+Quick exploration should reveal most customization options.
+An important concept are style hooks, discussed further down below in
+@style-hooks.
 
 == Common Options
 
@@ -160,7 +177,8 @@ The template supports *English (`en`)* and *German (`de`)*:
 
 === Document metadata
 
-*Title*, *description*, *authors*, and *keywords* can be customized via a `set`-rule on `document`.
+*Title*, *description*, *authors*, and *keywords* can be customized via a
+`set`-rule on `document`.
 
 #codly(skips: ((8, 4),))
 ```typ
@@ -174,11 +192,17 @@ The template supports *English (`en`)* and *German (`de`)*:
 )
 ```
 
-This information is embedded in the metadata of the compiled PDF. It is also picked up by the provided `titlepage` function.
+This information is embedded in the metadata of the compiled PDF.
+It is also picked up by the provided `titlepage` function.
 
 === Titlepage
 
-The titlepage is customizable via the `titlepage` template parameter. The template simply prepends the titlepage to the document while applying `global-style` (without `document-style`).
+The titlepage is customizable via the `titlepage` template parameter.
+The template simply prepends the titlepage to the document while applying
+`global-style` (without `document-style`).
+Its parameters are documented inline on the `titlepage` function; required
+values are the course of study and mentor name, while degree, submission date,
+work type, study-program label, and place can be overridden as needed.
 
 #codly(skips: ((7, 3),))
 ```typ
@@ -199,9 +223,44 @@ Omitting the titlepage is as simple as passing *`none`*:
 )
 ```
 
+=== Generative AI documentation
+
+The generative AI documentation is mandatory for thesis submissions and should
+be attached to the appendix.
+We expose a ready to use component that you have to manually add to your
+appendix content:
+
+#codly(skips: ((3, 9), (13, 4)))
+```typ
+#show: full-thesis.with(
+  appendix: [
+    = Generative AI Documentation
+    #generative-ai-documentation(
+      verification-confirmed: true,
+      responsibility-confirmed: true,
+      literature-search-tools-used: [ChatGPT, Elicit],
+      literature-search-tool-usage: [Used to discover search terms and summarize candidate papers for the literature review; all sources and summaries were checked by the author.],
+      coding-tools-used: [GitHub Copilot],
+      coding-tool-usage: [Used to suggest unit tests and explain errors in the implementation chapter.],
+    )
+  ],
+)
+```
+
+The `*-confirmed` parameters default to `false`, so you have to explicitly set
+them to `true` if you want to confirm the responsible use of generative AI
+tools.
+The `*-tools-used` parameters should always be paired with an according
+`*-tool-usage` parameter.
+Omitting a tool usage activity will result in a blank cell in the table.
+
 === Copyright page
 
-An optional copyright page can be added directly by chaining it with the `titlepage` component using a `pagebreak()`. Supported presets are Creative Commons (CC BY-NC-ND 4.0 via `LICENSE_TYPES.cc-by-nc-nd`) and all-rights-reserved (via `LICENSE_TYPES.all-rights-reserved`):
+An optional copyright page can be added directly by chaining it with the
+`titlepage` component using a `pagebreak()`.
+Supported presets are Creative Commons (CC BY-NC-ND 4.0 via
+`LICENSE_TYPES.cc-by-nc-nd`) and all-rights-reserved (via
+`LICENSE_TYPES.all-rights-reserved`):
 
 #codly(skips: ((7, 3),))
 ```typ
@@ -220,7 +279,11 @@ An optional copyright page can be added directly by chaining it with the `titlep
 
 === Citation style
 
-Depending on your needs, your mentor and field of work, you might need to change the citation style. Luckily, _Typst_ supports pretty much all citation styles out of the box. When providing the `bibliography` template parameter, also add your desired citation style: #cite(<src_lodish-molecular-cell-biology>)
+Depending on your needs, your mentor and field of work, you might need to change
+the citation style.
+Luckily, _Typst_ supports pretty much all citation styles out of the box.
+When providing the `bibliography` template parameter, also add your desired
+citation style: #cite(<src_lodish-molecular-cell-biology>)
 
 #codly(skips: ((3, 3),))
 ```typ
@@ -230,7 +293,9 @@ Depending on your needs, your mentor and field of work, you might need to change
 ```
 #bibliography("manual.yaml", title: none, style: "ieee")
 
-And switching to *APA*#footnote[Default citation style]: #cite(<src_lodish-molecular-cell-biology>)
+And switching to *APA*#footnote[Default citation style]: #cite(
+  <src_lodish-molecular-cell-biology>,
+)
 #codly(skips: ((3, 3),))
 ```typ
 #show: full-thesis.with(
@@ -241,7 +306,8 @@ And switching to *APA*#footnote[Default citation style]: #cite(<src_lodish-molec
 
 === Changing document font
 
-Many users might want to change the font from the default base style. For this, you can use the `document-style` style hook:
+Many users might want to change the font from the default base style.
+For this, you can use the `document-style` style hook:
 
 #codly(skips: ((6, 3),))
 ```typ
@@ -272,7 +338,9 @@ Many users might want to change the font from the default base style. For this, 
 
 === Adjust paragraph spacing
 
-The paragraph spacing can be adjusted via a `par` set-Rule in the `document-style` style hook. The default spacing is `1.2em`.
+The paragraph spacing can be adjusted via a `par` set-Rule in the
+`document-style` style hook.
+The default spacing is `1.2em`.
 
 #codly(skips: ((4, 3),))
 ```typ
@@ -286,7 +354,8 @@ The paragraph spacing can be adjusted via a `par` set-Rule in the `document-styl
 
 === Abbreviation table
 
-An abbreviation table is simply a Typst `dictionary` where the keys are the abbreviations and the values are the full definitions.
+An abbreviation table is simply a Typst `dictionary` where the keys are the
+abbreviations and the values are the full definitions.
 
 #let abbreviations = (
   "USB": "Universal Serial Bus",
@@ -325,7 +394,14 @@ Then pass it to the `abbreviations` template parameter:
 
 === Change thesis style
 
-The template supports two different thesis styles, which control the overall look and feel of the document: *classic* and *modern*. The classic style is the default and is more traditional. It tries to loyal to the #link("https://github.com/Digital-Media/HagenbergThesis/tree/main")[Digital-Media/HagenbergThesis] template, whereas the modern style is clean, uniform and inspired by higher technical college diploma thesis design guides. To change the thesis style, you can use the `thesis-style` template parameter:
+The template supports two different thesis styles, which control the overall
+look and feel of the document: *classic* and *modern*.
+The classic style is the default and is more traditional.
+It tries to loyal to the #link(
+  "https://github.com/Digital-Media/HagenbergThesis/tree/main",
+)[Digital-Media/HagenbergThesis] template, whereas the modern style is clean,
+uniform and inspired by higher technical college diploma thesis design guides.
+To change the thesis style, you can use the `thesis-style` template parameter:
 
 #codly(skips: ((3, 3),))
 ```typ
@@ -334,11 +410,14 @@ The template supports two different thesis styles, which control the overall loo
 )
 ```
 
-You can try out the different styles even after finishing your thesis (assuming no major style modifications were made by you)! Feedback to the *modern* style is especially helpful!
+You can try out the different styles even after finishing your thesis (assuming
+no major style modifications were made by you)!
+Feedback to the *modern* style is especially helpful!
 
 === Two-column layout
 
-_Typst_ easily supports two-column layouts out of the box. Make use of the `content-style` style hook to achieve this:
+_Typst_ easily supports two-column layouts out of the box.
+Make use of the `content-style` style hook to achieve this:
 
 #codly(skips: ((2, 3),))
 ```typ
@@ -352,7 +431,9 @@ _Typst_ easily supports two-column layouts out of the box. Make use of the `cont
 
 === Print size control box
 
-To include a print size control box at the end of the document, which is useful when printing the document on paper but is deactivated by default for digital export, set the `include-print-size-control` template parameter to `true`:
+To include a print size control box at the end of the document, which is useful
+when printing the document on paper but is deactivated by default for digital
+export, set the `include-print-size-control` template parameter to `true`:
 
 #codly(skips: ((3, 3),))
 ```typ
@@ -363,14 +444,18 @@ To include a print size control box at the end of the document, which is useful 
 
 == Style hooks <style-hooks>
 
-Import `full-thesis`, then customize appearance and structure by passing style hooks to `full-thesis.with(...)`, such as:
+Import `full-thesis`, then customize appearance and structure by passing style
+hooks to `full-thesis.with(...)`
+, such as:
 
 - `global-style` (fonts, page layout)
 - `document-style` (overall document)
 - `content-style` (main chapters)
 - Section hooks: `abstract-style`, `outline-style`, `bibliography-style`, etc.
 
-These parameters expect functions taking the section content and returning newly styled content. For example changing the page numbering of the main content to roman numerals:
+These parameters expect functions taking the section content and returning newly
+styled content.
+For example changing the page numbering of the main content to roman numerals:
 
 #codly(skips: ((2, 3),))
 ```typ
@@ -382,11 +467,15 @@ These parameters expect functions taking the section content and returning newly
 )
 ```
 
-Defaults match typical FH thesis requirements. Override only what you need.
+Defaults match typical FH thesis requirements.
+Override only what you need.
 
 == Sections
 
-Most sections are optional and many can be opt-out of. Simply omitting them from the `full-thesis.with(...)` call will omit them from the document. Sections requiring explicit opt-out are specified with a `none` value:
+Most sections are optional and many can be opt-out of.
+Simply omitting them from the `full-thesis.with(...)`
+call will omit them from the document.
+Sections requiring explicit opt-out are specified with a `none` value:
 
 #codly(skips: ((3, 3),))
 ```typ
@@ -397,9 +486,12 @@ Most sections are optional and many can be opt-out of. Simply omitting them from
 
 == Advanced
 
-For power users seeking fine-grained control over the document structure, the template provides individual sections as ready to use elements.
+For power users seeking fine-grained control over the document structure, the
+template provides individual sections as ready to use elements.
 
-These take the section's main content as input and display a correctly stylized version of it. This allows you to put the preamble after the table of contents:
+These take the section's main content as input and display a correctly stylized
+version of it.
+This allows you to put the preamble after the table of contents:
 
 ```typ
 #show: full-thesis.with(
@@ -416,7 +508,8 @@ These take the section's main content as input and display a correctly stylized 
 )
 ```
 
-However, by default the preamble's headings are not listed in the outline. To fix this, you can use the `style-preface` parameter:
+However, by default the preamble's headings are not listed in the outline.
+To fix this, you can use the `style-preface` parameter:
 
 ```typ
 #show: full-thesis.with(
@@ -440,24 +533,50 @@ However, by default the preamble's headings are not listed in the outline. To fi
 
 == Hayagriva
 
-#link("https://github.com/typst/hayagriva")[Hayagriva] is Typst's custom bibliography tool and specification. It uses the `.yaml` format, creating a unified data model supporting over *2600* citation styles. It is the recommended way to handle citations in Typst and easy to learn, so I recommend giving it a try if you're fresh to scientific writing. You can find the documentation at #link("https://github.com/typst/hayagriva/blob/main/docs/file-format.md").
+#link("https://github.com/typst/hayagriva")[Hayagriva] is Typst's custom
+bibliography tool and specification.
+It uses the `.yaml` format, creating a unified data model supporting over *2600*
+citation styles.
+It is the recommended way to handle citations in Typst and easy to learn, so I
+recommend giving it a try if you're fresh to scientific writing.
+You can find the documentation at #link(
+  "https://github.com/typst/hayagriva/blob/main/docs/file-format.md",
+).
 
-Alternatively, Typst also supports BibLaTex files out of the box, so you can use your existing collection with the `bibliography` element.
+Alternatively, Typst also supports BibLaTex files out of the box, so you can use
+your existing collection with the `bibliography` element.
 
 == Typstyle
 
-#link("https://github.com/typstyle-rs/typstyle")[Typstyle] is a tool for formatting Typst code. It is my personal recommendation so you don't have to worry about formatting your source code. The documentation is available at #link("https://typstyle-rs.github.io/typstyle/").
+#link("https://github.com/typstyle-rs/typstyle")[Typstyle] is a tool for
+formatting Typst code.
+It is my personal recommendation so you don't have to worry about formatting
+your source code.
+The documentation is available at #link(
+  "https://typstyle-rs.github.io/typstyle/",
+).
 
 == mise-en-place <mise-en-place>
 
-#link("https://github.com/jdx/mise")[mise] is a developer environment manager, covering tools, environment variables, tasks, and more. It unifies many setups and makes new projects easy to manage. Check it out here: #link("https://mise.jdx.dev/")
+#link("https://github.com/jdx/mise")[mise] is a developer environment manager,
+covering tools, environment variables, tasks, and more.
+It unifies many setups and makes new projects easy to manage.
+Check it out here: #link("https://mise.jdx.dev/")
 
-While being 100% optional, for people wanting to work with mise, the quick-start approach in @quick-start contains a mise configuration file, which gets you going quickly. Simply executing `mise run export` will compile the document and produce a PDF file, with no manual installation of the Typst CLI or other tools required.
+While being 100% optional, for people wanting to work with mise, the quick-start
+approach in @quick-start contains a mise configuration file, which gets you
+going quickly.
+Simply executing `mise run export` will compile the document and produce a PDF
+file, with no manual installation of the Typst CLI or other tools required.
 
 == Packages
 
 
-You will find a list of my personal recommended and useful third party Typst packages below. If you need anything not listed here, feel free to browse through #link("https://typst.app/universe/search/?kind=packages")[Typst Universe], which provides a solution for almost any problem.
+You will find a list of my personal recommended and useful third party Typst
+packages below.
+If you need anything not listed here, feel free to browse through #link(
+  "https://typst.app/universe/search/?kind=packages",
+)[Typst Universe], which provides a solution for almost any problem.
 
 #let package-recommend(
   name,
@@ -479,11 +598,13 @@ You will find a list of my personal recommended and useful third party Typst pac
 #package-recommend(
   "lilaq",
   "https://typst.app/universe/package/lilaq",
-)[easy to use plotting library with sane defaults and lots of customization options]
+)[easy to use plotting library with sane defaults and lots of customization
+  options]
 #package-recommend(
   "bytefield",
   "https://typst.app/universe/package/bytefield",
-)[network protocol headers, packet structures, and memory byte/bit layout diagrams]
+)[network protocol headers, packet structures, and memory byte/bit layout
+  diagrams]
 #package-recommend(
   "digidraw",
   "https://typst.app/universe/package/digidraw",
@@ -491,11 +612,13 @@ You will find a list of my personal recommended and useful third party Typst pac
 #package-recommend(
   "booktabs",
   "https://typst.app/universe/package/booktabs",
-)[clean, publication-quality tables using toprule, midrule, and bottomrule rules]
+)[clean, publication-quality tables using toprule, midrule, and bottomrule
+  rules]
 #package-recommend(
   "zero",
   "https://typst.app/universe/package/zero",
-)[configurable scientific number formatting; basically a requirement for scientific writing]
+)[configurable scientific number formatting; basically a requirement for
+  scientific writing]
 #package-recommend(
   "fancy-units",
   "https://typst.app/universe/package/fancy-units",
@@ -507,12 +630,17 @@ You will find a list of my personal recommended and useful third party Typst pac
 #package-recommend(
   "codly",
   "https://typst.app/universe/package/codly",
-)[code-block styling and formatting, has some quite powerful features, used in this manual]
+)[code-block styling and formatting, has some quite powerful features, used in
+  this manual]
 #package-recommend(
   "suiji",
   "https://typst.app/universe/package/suiji",
-)[pseudo-random number generator, useful for programmatic generation of data, solves Typst's guarantee of reproducibility and inherent statelessness]
+)[pseudo-random number generator, useful for programmatic generation of data,
+  solves Typst's guarantee of reproducibility and inherent statelessness]
 
 == Support
 
-If you require any assistance, are unsure about approaching certain problems, or just want to chat about Typst, feel free to reach out on GitHub, create an issue #link(package-metadata.package.repository + "/issues")[in the repository], or send me an email at #link("mailto:" + my-email).
+If you require any assistance, are unsure about approaching certain problems, or
+just want to chat about Typst, feel free to reach out on GitHub, create an issue
+#link(package-metadata.package.repository + "/issues")[in the repository], or
+send me an email at #link("mailto:" + my-email).
