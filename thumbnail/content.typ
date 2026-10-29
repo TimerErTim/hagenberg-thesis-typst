@@ -2,7 +2,7 @@
 
 #import "../lib.typ": (
   LICENSE_TYPES, THESIS_STYLE, WORK_TYPES, copyright-page, full-thesis,
-  titlepage, generative-ai-documentation
+  generative-ai-documentation, titlepage,
 )
 
 #set document(
@@ -41,9 +41,11 @@
       verification-confirmed: true,
       responsibility-confirmed: true,
       literature-search-tools-used: [ChatGPT, Elicit],
-      literature-search-tool-usage: [Used to discover search terms and summarize candidate papers for the literature review.],
+      literature-search-tool-usage: [Used to discover search terms and summarize
+        candidate papers for the literature review.],
       coding-tools-used: [GitHub Copilot],
-      coding-tool-usage: [Used to suggest unit tests and explain errors in the implementation chapter.],
+      coding-tool-usage: [Used to suggest unit tests and explain errors in the
+        implementation chapter.],
     )
   ],
   abbreviations: abbr, // Can be deleted if you don't need abbreviations

@@ -317,8 +317,10 @@
   // Arabic for text sections = appendix
   set page(numbering: "1")
 
-  set figure(numbering: (..n) => [A.#numbering("1", ..n)])
-  set math.equation(numbering: (..n) => [(A.#numbering("1", ..n))])
+  set figure(numbering: (..n) => [A.
+    #numbering("1", ..n)])
+  set math.equation(numbering: (..n) => [(A.
+    #numbering("1", ..n))])
 
   doc
 }

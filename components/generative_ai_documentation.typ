@@ -53,8 +53,6 @@
   citation-management-tools-used: [],
   citation-management-tool-usage: [],
 ) = [
-  = #i18n("ai-documentation-heading")
-
   == #i18n("ai-responsible-use-heading")
 
   #i18n("ai-responsible-use-instruction")
@@ -66,8 +64,11 @@
       [*#i18n("ai-responsible-use-statements")*],
       [*#i18n("ai-responsible-use-confirmation")*],
     ),
-    [#i18n("ai-responsible-use-verification")], [☐ #if verification-confirmed { place(sym.crossmark, top) }],
-    [#i18n("ai-responsible-use-author-responsibility")], [☐ #if responsibility-confirmed { place(sym.crossmark, top) }],
+    [#i18n("ai-responsible-use-verification")],
+    [☐ #if verification-confirmed { place(sym.crossmark, top) }],
+
+    [#i18n("ai-responsible-use-author-responsibility")],
+    [☐ #if responsibility-confirmed { place(sym.crossmark, top) }],
   )
 
   == #i18n("ai-activities-heading")
@@ -80,17 +81,66 @@
   #table(
     columns: 4,
     fill: (x, y) => if y == 0 { gray },
-    table.header(repeat: false)[*#i18n("ai-activity")*][*#i18n("description")*][*#i18n("ai-tools-used")*\ (#footnote[#i18n("ai-tools-used-footnote")])][*#i18n("ai-tool-usage-description")*],
-    [#i18n("ai-activity-idea-generation")], i18n("ai-description-idea-generation"), idea-generation-tools-used, idea-generation-tool-usage,
-    [#i18n("ai-activity-literature-search")], i18n("ai-description-literature-search"), literature-search-tools-used, literature-search-tool-usage,
-    [#i18n("ai-activity-methodology")], i18n("ai-description-methodology"), methodology-tools-used, methodology-tool-usage,
-    [#i18n("ai-activity-coding")], i18n("ai-description-coding"), coding-tools-used, coding-tool-usage,
-    [#i18n("ai-activity-data-analysis")], i18n("ai-description-data-analysis"), data-analysis-tools-used, data-analysis-tool-usage,
-    [#i18n("ai-activity-interpretation")], i18n("ai-description-interpretation"), interpretation-tools-used, interpretation-tool-usage,
-    [#i18n("ai-activity-structuring")], i18n("ai-description-structuring"), structuring-tools-used, structuring-tool-usage,
-    [#i18n("ai-activity-text-generation")], i18n("ai-description-text-generation"), text-generation-tools-used, text-generation-tool-usage,
-    [#i18n("ai-activity-translation")], i18n("ai-description-translation"), translation-tools-used, translation-tool-usage,
-    [#i18n("ai-activity-text-review")], i18n("ai-description-text-review"), text-review-tools-used, text-review-tool-usage,
-    [#i18n("ai-activity-citation-management")], i18n("ai-description-citation-management"), citation-management-tools-used, citation-management-tool-usage,
+    table.header(repeat: false,)[*#i18n("ai-activity")*][*#i18n(
+      "description",
+    )*][*#i18n("ai-tools-used")*\ (#i18n(
+        "ai-tools-used-sidenote",
+      ))#footnote[#i18n("ai-tools-used-footnote")]][*#i18n(
+        "ai-tool-usage-description",
+      )*\ (#i18n("ai-tool-usage-description-sidenote"))],
+    [#i18n("ai-activity-idea-generation")],
+    i18n("ai-description-idea-generation"),
+    idea-generation-tools-used,
+    idea-generation-tool-usage,
+
+    [#i18n("ai-activity-literature-search")],
+    i18n("ai-description-literature-search"),
+    literature-search-tools-used,
+    literature-search-tool-usage,
+
+    [#i18n("ai-activity-methodology")],
+    i18n("ai-description-methodology"),
+    methodology-tools-used,
+    methodology-tool-usage,
+
+    [#i18n("ai-activity-coding")],
+    i18n("ai-description-coding"),
+    coding-tools-used,
+    coding-tool-usage,
+
+    [#i18n("ai-activity-data-analysis")],
+    i18n("ai-description-data-analysis"),
+    data-analysis-tools-used,
+    data-analysis-tool-usage,
+
+    [#i18n("ai-activity-interpretation")],
+    i18n("ai-description-interpretation"),
+    interpretation-tools-used,
+    interpretation-tool-usage,
+
+    [#i18n("ai-activity-structuring")],
+    i18n("ai-description-structuring"),
+    structuring-tools-used,
+    structuring-tool-usage,
+
+    [#i18n("ai-activity-text-generation")],
+    i18n("ai-description-text-generation"),
+    text-generation-tools-used,
+    text-generation-tool-usage,
+
+    [#i18n("ai-activity-translation")],
+    i18n("ai-description-translation"),
+    translation-tools-used,
+    translation-tool-usage,
+
+    [#i18n("ai-activity-text-review")],
+    i18n("ai-description-text-review"),
+    text-review-tools-used,
+    text-review-tool-usage,
+
+    [#i18n("ai-activity-citation-management")],
+    i18n("ai-description-citation-management"),
+    citation-management-tools-used,
+    citation-management-tool-usage,
   )
 ]

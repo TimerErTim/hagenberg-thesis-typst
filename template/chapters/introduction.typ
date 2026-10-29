@@ -4,7 +4,8 @@
 
 = Introduction <introduction_heading>
 
-Umfragedaten sind ein etabliertes Instrument zur Erhebung von Einstellungen, Meinungen und Verhaltensweisen
+Umfragedaten sind ein etabliertes Instrument zur Erhebung von Einstellungen,
+Meinungen und Verhaltensweisen
 
 #lorem(10)
 #{
