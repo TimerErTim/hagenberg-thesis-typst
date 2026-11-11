@@ -7,3 +7,15 @@
 == Future Work
 
 #lorem(10)
+
+== Past Work
+
+#lorem(10)
+
+== Discussion
+
+#lorem(10)
+
+#lorem(10)
+
+== Outlook

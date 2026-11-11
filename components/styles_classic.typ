@@ -116,11 +116,15 @@
           ).last(default: none)
           show: apply-sans-font.with()
           if next-heading != none [
-            #numbering(
-              next-heading.numbering,
-              ..counter(heading).at(next-heading.location()),
-            )
-            #show: box.with(inset: (left: 1mm))
+            #show: it => if next-heading.numbering != none {
+              numbering(
+                next-heading.numbering,
+                ..counter(heading).at(next-heading.location()),
+              )
+              box(inset: (left: 1mm), it)
+            } else {
+              it
+            }
             #next-heading.body
           ]
         },
