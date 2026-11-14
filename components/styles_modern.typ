@@ -73,16 +73,16 @@
     }
 
     if it.element.func() == math.equation {
-      return link(it.element.location())[
-        #(it.supplement)(it.element)
-        #(
+      return link(it.element.location(), (
+        (it.supplement)(it.element),
+        (
           (it.element.numbering)(
             ..counter(math.equation).at(it.element.location()),
           )
             .trim("(", at: start)
             .trim(")", at: end)
-        )
-      ]
+        ),
+      ).join(sym.space))
     }
 
     return it
