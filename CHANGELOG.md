@@ -15,6 +15,7 @@ Project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Fixed
 - Classic: Multipage sections with no heading numbering (like "Contents") crash due to relying on `heading.numbering` ([#23](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/23))
+- Removed trailing whitespace in equation references ([#24](https://github.com/TimerErTim/hagenberg-thesis-typst/pull/24))
 
 ## [0.2.3] - 2026-10-07
 

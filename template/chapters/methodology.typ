@@ -6,9 +6,9 @@
 
 Reference a:
 
-- Chapter: @introduction_heading
-- Section: @nested_subheading
-- Equation: @bayes_theorem
+- Chapter: @introduction_heading.
+- Section: @nested_subheading.
+- Equation: @bayes_theorem.
 
 // Let's show a small table
 #{
